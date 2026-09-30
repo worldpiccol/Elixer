@@ -143,17 +143,14 @@
       max-width: 120mm;
     }
 
-    .cover-brand {
-      font-family: var(--font-display);
-      font-size: 42pt;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      line-height: 1;
+    .cover-logo {
+      width: 58mm;
       margin-bottom: 5mm;
-      background: var(--gold-foil);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    }
+
+    .cover-logo img {
+      width: 100%;
+      height: auto;
     }
 
     .cover-tag {
@@ -426,16 +423,14 @@
       padding-top: 7mm;
     }
 
-    .signoff-brand {
-      font-family: var(--font-display);
-      font-size: 22pt;
-      letter-spacing: 0.2em;
-      font-weight: 600;
-      margin-bottom: 2.5mm;
-      background: var(--gold-foil);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .signoff-logo {
+      width: 42mm;
+      margin: 0 auto 3mm;
+    }
+
+    .signoff-logo img {
+      width: 100%;
+      height: auto;
     }
 
     .signoff-tag {
@@ -460,7 +455,9 @@
       <img src="images/gold-iphone.jpg" alt="">
     </div>
     <div class="cover-copy">
-      <h1 class="cover-brand">4EP GOLD</h1>
+      <h1 class="cover-logo">
+        <img src="images/logo.png" alt="4EP Gold">
+      </h1>
       <p class="cover-tag">Technology, Elevated.</p>
       <p class="cover-sub">24K Gold-Plated Collection</p>
       <p class="cover-body">Discover a refined expression of technology, crafted for those who appreciate exclusivity, precision and distinction.</p>
@@ -564,7 +561,9 @@
       </div>
 
       <footer class="signoff">
-        <p class="signoff-brand">4EP GOLD</p>
+        <div class="signoff-logo">
+          <img src="images/logo.png" alt="4EP Gold">
+        </div>
         <p class="signoff-tag">Technology, Elevated.</p>
         <p class="signoff-line">Crafted for distinction. Made to be remembered.</p>
       </footer>
