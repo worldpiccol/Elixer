@@ -147,16 +147,16 @@
     }
 
     /* ——— PRODUCTS ——— */
-    .pad { padding: 12mm 14mm 11mm; height: 100%; position: relative; z-index: 2; box-sizing: border-box; overflow: hidden; }
-    .products-head { margin-bottom: 3.5mm; }
-    .products-head .title { font-size: 14pt; }
+    .pad { padding: 16mm; height: 100%; position: relative; z-index: 2; }
+    .products-head { margin-bottom: 6mm; }
+    .products-head .title { font-size: 16pt; }
 
     .hero-row {
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
-      gap: 3.5mm;
-      height: 58mm;
-      margin-bottom: 3mm;
+      gap: 4.5mm;
+      height: 98mm;
+      margin-bottom: 4mm;
     }
     .hero-shot, .art-shot, .mini-shot, .watch-visual, .finish-shot {
       border: 1px solid var(--line);
@@ -196,73 +196,41 @@
       filter: drop-shadow(0 4mm 6mm rgba(0,0,0,0.45));
     }
 
-    .duo-grid {
+    .price-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2.5mm;
-      margin-bottom: 3mm;
-    }
-    .duo-card {
-      display: flex;
-      flex-direction: column;
-      gap: 1.4mm;
-      min-height: 0;
-    }
-    .duo-shot {
-      height: 52mm;
-      border: 1px solid var(--line);
-      overflow: hidden;
-      background: var(--panel);
-    }
-    .duo-shot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 42%;
-    }
-    .duo-card h3 {
-      font-family: var(--display);
-      font-size: 6.5pt;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: var(--gold-soft);
-    }
-    .duo-card p {
-      font-size: 6.5pt;
-      color: #d6d6db;
-      font-weight: 500;
-      line-height: 1.35;
-    }
-    .duo-card strong {
-      color: var(--white);
-      font-family: var(--display);
-      font-weight: 700;
-    }
-
-    .duo-price-bar {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 4mm;
-      padding: 2.5mm 0;
-      margin-bottom: 3.5mm;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 6mm;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
+      padding: 3.5mm 0;
+      margin-bottom: 5mm;
     }
-    .duo-price-bar span {
-      font-size: 7pt;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--white);
-      font-weight: 600;
+    .price-item {
+      padding: 3mm 0;
+      border-bottom: 1px solid rgba(43,43,48,0.85);
     }
-    .duo-price-bar strong {
+    .price-item:nth-child(3),
+    .price-item:nth-child(4) { border-bottom: 0; }
+    .price-item h3 {
       font-family: var(--display);
-      font-size: 11pt;
-      letter-spacing: 0.06em;
+      font-size: 9pt;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      margin-bottom: 1.4mm;
+    }
+    .price-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 8pt;
+      color: #c8c8ce;
+      font-weight: 500;
+      padding: 0.5mm 0;
+    }
+    .price-line strong {
       color: var(--gold-soft);
+      font-family: var(--display);
       font-weight: 700;
+      font-size: 8pt;
     }
 
     .watch-row {
@@ -271,29 +239,29 @@
       gap: 5mm;
       align-items: center;
     }
-    .watch-copy .title { font-size: 12pt; margin-bottom: 2mm; }
+    .watch-copy .title { font-size: 13pt; margin-bottom: 2.5mm; }
     .watch-price {
       font-family: var(--display);
-      font-size: 14pt;
+      font-size: 16pt;
       letter-spacing: 0.08em;
       background: var(--foil);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin-bottom: 1.5mm;
+      margin-bottom: 2mm;
     }
     .watch-note {
       color: #c8c8ce;
-      font-size: 7.5pt;
-      line-height: 1.45;
+      font-size: 8pt;
+      line-height: 1.5;
       max-width: 85mm;
       font-weight: 500;
     }
     .watch-visual {
-      height: 48mm;
+      height: 72mm;
       display: grid;
       place-items: center;
-      padding: 3mm;
+      padding: 4mm;
       overflow: visible;
       background:
         radial-gradient(ellipse 70% 55% at 50% 55%, rgba(201,162,39,0.12), transparent 65%),
@@ -420,6 +388,12 @@
       max-height: 78mm;
       align-content: stretch;
     }
+    .finishes.duo-finishes {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3mm;
+      min-height: 70mm;
+      max-height: 95mm;
+    }
     .finish {
       display: flex;
       flex-direction: column;
@@ -439,6 +413,7 @@
       object-fit: cover;
       object-position: center 18%;
     }
+    .duo-finishes .finish-shot img { object-position: center 42%; }
     .finish figcaption {
       flex: 0 0 auto;
       margin-top: 2mm;
@@ -487,8 +462,8 @@
   <!-- PAGE 1 -->
   <section class="page">
     <div class="frame"></div>
-    <div class="cover-bg"><img src="images/duo-nobile-gold-cover.jpg" alt=""></div>
-    <p class="cover-mark">iPhone Duo Collection</p>
+    <div class="cover-bg"><img src="images/gold-iphone.jpg" alt=""></div>
+    <p class="cover-mark">24K Gold-Plated Collection</p>
     <div class="cover-content">
       <h1 class="cover-logo"><img src="images/logo.png" alt="4EP Gold"></h1>
       <p class="cover-tag">Technology, Elevated.</p>
@@ -503,7 +478,7 @@
     <div class="pad">
       <header class="products-head">
         <p class="eyebrow">Collection</p>
-        <h2 class="title">iPhone Duo Collection</h2>
+        <h2 class="title">4EP Gold iPhone Collection</h2>
       </header>
 
       <div class="hero-row">
@@ -511,32 +486,27 @@
         <figure class="art-shot"><img src="images/cutouts/collection-fan-cutout.png" alt=""></figure>
       </div>
 
-      <div class="duo-grid">
-        <article class="duo-card">
-          <div class="duo-shot"><img src="images/duo-nobile-gold.jpg" alt=""></div>
-          <h3>Nobile Gold</h3>
-          <p><strong>From $8,000</strong> · 512GB</p>
+      <div class="price-grid">
+        <article class="price-item">
+          <h3>iPhone 17 Pro</h3>
+          <div class="price-line"><span>512GB</span><strong>From $3,800</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $4,100</strong></div>
         </article>
-        <article class="duo-card">
-          <div class="duo-shot"><img src="images/duo-armor.jpg" alt=""></div>
-          <h3>Armor</h3>
-          <p><strong>From $8,000</strong> · 512GB</p>
+        <article class="price-item">
+          <h3>iPhone 17 Pro Max</h3>
+          <div class="price-line"><span>512GB</span><strong>From $4,000</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $4,300</strong></div>
         </article>
-        <article class="duo-card">
-          <div class="duo-shot"><img src="images/duo-nobile-platinum.jpg" alt=""></div>
-          <h3>Nobile Platinum</h3>
-          <p><strong>From $8,000</strong> · 512GB</p>
+        <article class="price-item">
+          <h3>iPhone 18 Pro</h3>
+          <div class="price-line"><span>512GB</span><strong>From $5,500</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $5,800</strong></div>
         </article>
-        <article class="duo-card">
-          <div class="duo-shot"><img src="images/duo-helios.jpg" alt=""></div>
-          <h3>Helios</h3>
-          <p><strong>From $8,000</strong> · 512GB</p>
+        <article class="price-item">
+          <h3>iPhone 18 Pro Max</h3>
+          <div class="price-line"><span>512GB</span><strong>From $6,000</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $6,300</strong></div>
         </article>
-      </div>
-
-      <div class="duo-price-bar">
-        <span>iPhone Duo · 1TB $8,600 · 2TB $9,400</span>
-        <strong>From $8,000</strong>
       </div>
 
       <hr class="rule">
@@ -595,6 +565,64 @@
       <div class="color-note">
         <span>Color finishes · Rose · Emerald · Crimson</span>
         <strong>From $3,500</strong>
+      </div>
+
+      <div class="notes">
+        <p>All prices displayed are starting prices. Final pricing may vary depending on device model, storage capacity, customization requirements, materials used, diamond specifications, engraving, and special finishing.</p>
+      </div>
+
+      <footer class="signoff">
+        <div class="signoff-logo"><img src="images/logo.png" alt="4EP Gold"></div>
+        <p class="signoff-tag">Technology, Elevated.</p>
+        <p class="signoff-line">Crafted for distinction. Made to be remembered.</p>
+      </footer>
+    </div>
+  </section>
+
+  <!-- PAGE 4 -->
+  <section class="page">
+    <div class="frame"></div>
+    <div class="pad-bespoke">
+      <div class="bespoke-grid">
+        <div class="bespoke-copy">
+          <p class="eyebrow">Signature Line</p>
+          <h2 class="title">iPhone Duo</h2>
+          <p>Four signature finishes — Nobile Gold, Armor, Nobile Platinum and Helios — crafted as the pinnacle of the 4EP Gold collection.</p>
+          <ul class="list">
+            <li>Nobile Gold</li>
+            <li>Armor</li>
+            <li>Nobile Platinum</li>
+            <li>Helios</li>
+          </ul>
+        </div>
+        <aside class="quote">
+          <h3>Duo Pricing</h3>
+          <p><strong>512GB</strong> from $8,000<br><strong>1TB</strong> from $8,600<br><strong>2TB</strong> from $9,400</p>
+        </aside>
+      </div>
+
+      <div class="finishes duo-finishes">
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/duo-nobile-gold.jpg" alt=""></div>
+          <figcaption>Nobile Gold</figcaption>
+        </figure>
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/duo-armor.jpg" alt=""></div>
+          <figcaption>Armor</figcaption>
+        </figure>
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/duo-nobile-platinum.jpg" alt=""></div>
+          <figcaption>Nobile Platinum</figcaption>
+        </figure>
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/duo-helios.jpg" alt=""></div>
+          <figcaption>Helios</figcaption>
+        </figure>
+      </div>
+
+      <div class="color-note">
+        <span>iPhone Duo · 512GB · 1TB · 2TB</span>
+        <strong>From $8,000</strong>
       </div>
 
       <div class="notes">
