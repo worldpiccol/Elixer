@@ -524,34 +524,12 @@
     }
 
     .notes {
-      display: grid;
-      gap: 0.9rem;
+      display: block;
       border-top: 1px solid var(--line);
       padding-top: 1.05rem;
       margin-bottom: 1.5rem;
     }
-    @media (min-width: 760px) { .notes { grid-template-columns: 1.45fr 0.55fr; } }
-    .notes > p { color: var(--mute); font-size: 0.74rem; line-height: 1.65; }
-    .refs {
-      border: 1px solid var(--line);
-      background: var(--panel);
-      padding: 0.9rem 1rem;
-      display: grid;
-      gap: 0.55rem;
-    }
-    .refs span {
-      display: block;
-      font-size: 0.56rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.12rem;
-    }
-    .refs strong {
-      font-family: var(--display);
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
+    .notes > p { color: var(--mute); font-size: 0.74rem; line-height: 1.65; max-width: 40rem; }
 
     .signoff {
       text-align: center;
@@ -726,11 +704,6 @@
 
         <div class="notes">
           <p>All prices displayed are starting prices. Final pricing may vary depending on device model, storage capacity, customization requirements, materials used, diamond specifications, engraving, and special finishing.</p>
-          <div class="refs">
-            <div><span>Color Finishes</span><strong>From $3,500</strong></div>
-            <div><span>1TB Upgrade</span><strong>+$300</strong></div>
-            <div><span>Pro vs Pro Max</span><strong>$200 difference</strong></div>
-          </div>
         </div>
 
         <footer class="signoff">
