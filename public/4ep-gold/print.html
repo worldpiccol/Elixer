@@ -168,7 +168,19 @@
       height: 100%;
       object-fit: cover;
     }
-    .hero-shot img { object-position: center 16%; }
+    .hero-shot {
+      display: grid;
+      place-items: center;
+      padding: 4mm;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 55%, rgba(201,162,39,0.12), transparent 65%),
+        var(--panel);
+    }
+    .hero-shot img {
+      object-fit: contain;
+      object-position: center;
+      filter: drop-shadow(0 4mm 6mm rgba(0,0,0,0.45));
+    }
     .art-shot {
       display: grid;
       place-items: center;
@@ -463,7 +475,7 @@
       </header>
 
       <div class="hero-row">
-        <figure class="hero-shot"><img src="images/gold-iphone.jpg" alt=""></figure>
+        <figure class="hero-shot"><img src="images/cutouts/leather-duo-cutout.png" alt=""></figure>
         <figure class="art-shot"><img src="images/cutouts/collection-fan-cutout.png" alt=""></figure>
       </div>
 
