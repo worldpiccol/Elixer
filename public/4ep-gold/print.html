@@ -154,9 +154,9 @@
     .hero-row {
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
-      gap: 4.5mm;
-      height: 98mm;
-      margin-bottom: 4mm;
+      gap: 3.5mm;
+      height: 62mm;
+      margin-bottom: 3mm;
     }
     .hero-shot, .art-shot, .mini-shot, .watch-visual, .finish-shot {
       border: 1px solid var(--line);
@@ -233,6 +233,49 @@
       font-size: 8pt;
     }
 
+    .model-shots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5mm;
+      height: 58mm;
+      margin: 3mm 0 3.5mm;
+    }
+    .model-shot {
+      height: 100%;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 55%, rgba(201,162,39,0.12), transparent 65%),
+        var(--panel);
+      display: grid;
+      place-items: center;
+      padding: 2.5mm;
+      box-sizing: border-box;
+    }
+    .model-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 3mm 4mm rgba(0,0,0,0.45));
+    }
+    .model-shots figure {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+    }
+    .model-shots .model-shot { flex: 1 1 auto; min-height: 0; }
+    .model-shots figcaption {
+      flex: 0 0 auto;
+      margin-top: 1.5mm;
+      text-align: center;
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-weight: 600;
+    }
+
     .watch-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -258,7 +301,7 @@
       font-weight: 500;
     }
     .watch-visual {
-      height: 72mm;
+      height: 48mm;
       display: grid;
       place-items: center;
       padding: 4mm;
@@ -507,6 +550,17 @@
           <div class="price-line"><span>512GB</span><strong>From $6,000</strong></div>
           <div class="price-line"><span>1TB</span><strong>From $6,300</strong></div>
         </article>
+      </div>
+
+      <div class="model-shots">
+        <figure>
+          <div class="model-shot"><img src="images/cutouts/iphone-18-pro-cutout.png" alt=""></div>
+          <figcaption>iPhone 18 Pro</figcaption>
+        </figure>
+        <figure>
+          <div class="model-shot"><img src="images/cutouts/iphone-18-pro-max-cutout.png" alt=""></div>
+          <figcaption>iPhone 18 Pro Max</figcaption>
+        </figure>
       </div>
 
       <hr class="rule">
