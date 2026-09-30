@@ -3,42 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>4EP Gold Brochure PDF</title>
+  <title>4EP Gold — Brochure PDF</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    @page {
-      size: A4 portrait;
-      margin: 0;
-    }
+    @page { size: A4 portrait; margin: 0; }
 
     :root {
-      --obsidian: #0a0a0b;
-      --obsidian-lift: #121214;
-      --charcoal: #1c1c1f;
-      --frame: #2a2a2e;
-      --mute: #8a8a90;
-      --silver: #e8e8ea;
-      --white: #f7f7f5;
+      --ink: #070708;
+      --panel: #101012;
+      --line: #2b2b30;
+      --mute: #8d8d94;
+      --white: #f5f4f1;
       --gold: #c9a227;
-      --gold-bright: #e0c56a;
-      --gold-foil: linear-gradient(135deg, #8f7118 0%, #c9a227 22%, #f0d98a 45%, #c9a227 62%, #a8861d 78%, #e8d07a 100%);
-      --font-display: "Cinzel", "Times New Roman", serif;
-      --font-body: "Montserrat", sans-serif;
+      --gold-soft: #dcc56f;
+      --foil: linear-gradient(125deg, #7a6116 0%, #c9a227 28%, #f3e2a0 48%, #c9a227 68%, #97741c 100%);
+      --display: "Cinzel", serif;
+      --sans: "Montserrat", sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html, body {
-      background: var(--obsidian);
+      background: var(--ink);
       color: var(--white);
-      font-family: var(--font-body);
+      font-family: var(--sans);
       font-weight: 300;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
-
     img { display: block; max-width: 100%; }
     ul { list-style: none; }
 
@@ -48,507 +41,409 @@
       position: relative;
       overflow: hidden;
       page-break-after: always;
-      break-after: page;
-      background: var(--obsidian);
+      background: var(--ink);
     }
-
-    .page:last-child {
-      page-break-after: auto;
-      break-after: auto;
-    }
+    .page:last-child { page-break-after: auto; }
 
     .frame {
       position: absolute;
-      inset: 12mm;
-      border: 1px solid var(--frame);
+      inset: 10mm;
+      border: 1px solid var(--line);
+      z-index: 4;
       pointer-events: none;
-      z-index: 5;
     }
-
-    .frame::before,
-    .frame::after {
+    .frame::before, .frame::after {
       content: "";
       position: absolute;
-      width: 8mm;
-      height: 8mm;
-      border-color: var(--gold);
-      border-style: solid;
+      width: 7mm;
+      height: 7mm;
+      border: solid var(--gold);
     }
+    .frame::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+    .frame::after { right: -1px; bottom: -1px; border-width: 0 1px 1px 0; }
 
-    .frame::before {
-      top: -1px;
-      left: -1px;
-      border-width: 1px 0 0 1px;
-    }
-
-    .frame::after {
-      right: -1px;
-      bottom: -1px;
-      border-width: 0 1px 1px 0;
-    }
-
-    .label {
-      font-size: 8pt;
-      letter-spacing: 0.28em;
+    .eyebrow {
+      font-size: 7.5pt;
+      letter-spacing: 0.34em;
       text-transform: uppercase;
       color: var(--gold);
       font-weight: 500;
-      margin-bottom: 4mm;
+      margin-bottom: 3.5mm;
     }
-
-    .headline {
-      font-family: var(--font-display);
-      letter-spacing: 0.1em;
+    .title {
+      font-family: var(--display);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       font-weight: 500;
-      line-height: 1.15;
+      line-height: 1.12;
     }
-
-    .gold-rule {
+    .rule {
       height: 1px;
       border: 0;
-      margin: 7mm 0;
+      margin: 6mm 0;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      opacity: 0.7;
+      opacity: 0.65;
     }
 
-    /* COVER */
-    .cover-media {
+    /* ——— COVER ——— */
+    .cover-bg {
       position: absolute;
       inset: 0;
     }
-
-    .cover-media img {
+    .cover-bg img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 18%;
+      object-position: 55% 18%;
     }
-
-    .cover-media::after {
+    .cover-bg::after {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(115deg, rgba(10, 10, 11, 0.9) 0%, rgba(10, 10, 11, 0.4) 52%, rgba(10, 10, 11, 0.72) 100%),
-        linear-gradient(to top, rgba(10, 10, 11, 0.94) 0%, transparent 46%);
+        linear-gradient(105deg, rgba(7,7,8,0.92) 0%, rgba(7,7,8,0.35) 52%, rgba(7,7,8,0.7) 100%),
+        linear-gradient(to top, rgba(7,7,8,0.95) 0%, rgba(7,7,8,0.2) 48%, rgba(7,7,8,0.35) 100%);
     }
-
-    .cover-copy {
+    .cover-content {
       position: absolute;
-      left: 18mm;
-      right: 18mm;
-      bottom: 22mm;
+      left: 16mm;
+      right: 16mm;
+      bottom: 18mm;
       z-index: 2;
-      max-width: 120mm;
+      max-width: 118mm;
     }
-
-    .cover-logo {
-      width: 58mm;
-      margin-bottom: 5mm;
-    }
-
-    .cover-logo img {
-      width: 100%;
-      height: auto;
-    }
-
+    .cover-logo { width: 54mm; margin-bottom: 6mm; }
+    .cover-logo img { width: 100%; height: auto; }
     .cover-tag {
-      font-family: var(--font-display);
-      font-size: 12pt;
-      letter-spacing: 0.32em;
+      font-family: var(--display);
+      font-size: 11.5pt;
+      letter-spacing: 0.34em;
       text-transform: uppercase;
       margin-bottom: 3mm;
     }
-
     .cover-sub {
-      font-size: 8pt;
+      font-size: 7.5pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 5mm;
+      font-weight: 500;
+    }
+    .cover-copy {
+      color: rgba(245,244,241,0.74);
+      font-size: 9.5pt;
+      line-height: 1.6;
+      max-width: 98mm;
+    }
+    .cover-mark {
+      position: absolute;
+      top: 16mm;
+      right: 16mm;
+      z-index: 2;
+      font-size: 7pt;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--gold-bright);
-      font-weight: 500;
+      color: rgba(245,244,241,0.55);
+    }
+
+    /* ——— PRODUCTS ——— */
+    .pad { padding: 16mm; height: 100%; position: relative; z-index: 2; }
+    .products-head { margin-bottom: 6mm; }
+    .products-head .title { font-size: 16pt; }
+
+    .hero-row {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 4.5mm;
+      height: 108mm;
       margin-bottom: 5mm;
     }
-
-    .cover-body {
-      color: rgba(247, 247, 245, 0.75);
-      font-size: 10pt;
-      line-height: 1.55;
-    }
-
-    /* PRODUCTS */
-    .pad {
-      position: relative;
-      z-index: 2;
-      padding: 18mm;
-      height: 100%;
-    }
-
-    .products-head {
-      margin-bottom: 7mm;
-    }
-
-    .products-head .headline { font-size: 18pt; }
-
-    .product-stage {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 5mm;
-      margin-bottom: 2mm;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 3mm;
-      height: 105mm;
-    }
-
-    .shot {
+    .hero-shot, .art-shot, .mini-shot, .watch-visual, .finish-shot {
+      border: 1px solid var(--line);
       overflow: hidden;
-      border: 1px solid var(--frame);
-      background: var(--charcoal);
+      background: var(--panel);
     }
-
-    .shot img {
+    .hero-shot img, .mini-shot img, .watch-visual img, .finish-shot img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-
-    .shot-main {
-      grid-row: 1 / 3;
-    }
-
-    .shot-main img { object-position: center 18%; }
-    .shot-alt img { object-position: center 22%; }
-
-    .shot-cutout {
-      background:
-        radial-gradient(ellipse 70% 55% at 50% 55%, rgba(201, 162, 39, 0.1), transparent 65%),
-        var(--obsidian-lift);
+    .hero-shot img { object-position: center 16%; }
+    .art-shot {
       display: grid;
       place-items: center;
-      padding: 3mm;
+      padding: 4mm;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 55%, rgba(201,162,39,0.12), transparent 65%),
+        var(--panel);
     }
-
-    .shot-cutout img {
-      object-fit: contain;
-    }
-
-    .watch-shot {
-      height: 58mm;
-      border: 1px solid var(--frame);
-      overflow: hidden;
-      background: var(--charcoal);
-    }
-
-    .watch-shot img {
+    .art-shot img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center 32%;
+      object-fit: contain;
+      filter: drop-shadow(0 4mm 6mm rgba(0,0,0,0.45));
     }
 
-    .price-board {
-      border: 1px solid var(--frame);
-      background: var(--obsidian-lift);
-      padding: 5mm 5.5mm;
-    }
-
-    .price-item {
+    .price-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 6mm;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
       padding: 3.5mm 0;
-      border-bottom: 1px solid var(--frame);
+      margin-bottom: 5mm;
     }
-
-    .price-item:first-child { padding-top: 0; }
-    .price-item:last-child { border-bottom: 0; padding-bottom: 0; }
-
+    .price-item {
+      padding: 3mm 0;
+      border-bottom: 1px solid rgba(43,43,48,0.85);
+    }
+    .price-item:nth-child(3),
+    .price-item:nth-child(4) { border-bottom: 0; }
     .price-item h3 {
-      font-family: var(--font-display);
-      font-size: 9.5pt;
+      font-family: var(--display);
+      font-size: 9pt;
       letter-spacing: 0.08em;
       font-weight: 500;
-      margin-bottom: 1.5mm;
+      margin-bottom: 1.4mm;
     }
-
     .price-line {
       display: flex;
       justify-content: space-between;
-      font-size: 8.5pt;
+      font-size: 8pt;
       color: var(--mute);
-      padding: 0.6mm 0;
+      padding: 0.5mm 0;
     }
-
     .price-line strong {
-      color: var(--gold-bright);
-      font-family: var(--font-display);
+      color: var(--gold-soft);
+      font-family: var(--display);
       font-weight: 500;
-      font-size: 8.5pt;
+      font-size: 8pt;
     }
 
-    .watch-block {
+    .watch-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 5mm;
       align-items: center;
     }
-
-    .watch-copy .headline {
-      font-size: 14pt;
-      margin-bottom: 3mm;
-    }
-
+    .watch-copy .title { font-size: 13pt; margin-bottom: 2.5mm; }
     .watch-price {
-      font-family: var(--font-display);
-      font-size: 18pt;
+      font-family: var(--display);
+      font-size: 16pt;
       letter-spacing: 0.08em;
-      background: var(--gold-foil);
+      background: var(--foil);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin-bottom: 2.5mm;
+      margin-bottom: 2mm;
     }
-
     .watch-note {
       color: var(--mute);
-      font-size: 8.5pt;
+      font-size: 8pt;
       line-height: 1.5;
+      max-width: 85mm;
     }
+    .watch-visual { height: 52mm; }
+    .watch-visual img { object-position: center 30%; }
 
-    /* BESPOKE */
-    .bespoke-top {
+    /* ——— BESPOKE ——— */
+    .bespoke-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
       gap: 6mm;
       margin-bottom: 6mm;
     }
-
-    .bespoke-copy .headline {
-      font-size: 18pt;
-      margin-bottom: 3mm;
-    }
-
+    .bespoke-copy .title { font-size: 16pt; margin-bottom: 3mm; }
     .bespoke-copy > p {
       color: var(--mute);
-      font-size: 9.5pt;
+      font-size: 9pt;
+      line-height: 1.55;
       margin-bottom: 4mm;
-      line-height: 1.5;
     }
-
-    .bespoke-list { border-top: 1px solid var(--frame); }
-
-    .bespoke-list li {
+    .list { border-top: 1px solid var(--line); }
+    .list li {
       display: flex;
       align-items: center;
       gap: 3mm;
-      padding: 2.8mm 0;
-      border-bottom: 1px solid var(--frame);
-      font-size: 9.5pt;
-      color: var(--silver);
+      padding: 2.6mm 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 9pt;
+      color: #e4e3df;
     }
-
-    .bespoke-list li::before {
+    .list li::before {
       content: "";
-      width: 2.2mm;
-      height: 2.2mm;
+      width: 2mm;
+      height: 2mm;
       background: var(--gold);
       transform: rotate(45deg);
       flex-shrink: 0;
     }
-
-    .quote-card {
-      border: 1px solid rgba(201, 162, 39, 0.45);
-      background: linear-gradient(160deg, #1c1c1f, #121214);
+    .quote {
+      border: 1px solid rgba(201,162,39,0.45);
+      background: linear-gradient(165deg, #17171b, #101012);
       padding: 6mm;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 3.5mm;
+      gap: 3mm;
     }
-
-    .quote-card h3 {
-      font-family: var(--font-display);
-      font-size: 10pt;
-      letter-spacing: 0.16em;
-      color: var(--gold-bright);
+    .quote h3 {
+      font-family: var(--display);
+      font-size: 9.5pt;
+      letter-spacing: 0.18em;
+      color: var(--gold-soft);
       font-weight: 500;
     }
-
-    .quote-card p {
+    .quote p {
       color: var(--mute);
-      font-size: 8.5pt;
+      font-size: 8.2pt;
       line-height: 1.55;
     }
 
-    .finish-row {
+    .finishes {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 3mm;
       margin-bottom: 6mm;
-      height: 62mm;
+      height: 58mm;
     }
-
-    .finish-row .shot img { object-position: center 18%; }
-
-    .finish-caption {
+    .finish-shot img { object-position: center 18%; }
+    .finish figcaption {
       margin-top: 1.5mm;
       text-align: center;
-      font-size: 6.5pt;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .footer-notes {
-      border-top: 1px solid var(--frame);
-      padding-top: 5mm;
-      display: grid;
-      grid-template-columns: 1.4fr 0.6fr;
-      gap: 5mm;
-      margin-bottom: 8mm;
-    }
-
-    .footer-notes > p {
-      color: var(--mute);
-      font-size: 7.5pt;
-      line-height: 1.6;
-    }
-
-    .quick-ref {
-      border: 1px solid var(--frame);
-      background: var(--obsidian-lift);
-      padding: 4mm;
-      display: grid;
-      gap: 3mm;
-    }
-
-    .quick-ref span {
-      display: block;
-      font-size: 6.5pt;
+      font-size: 6pt;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 1mm;
     }
+    .finish .finish-shot { height: calc(100% - 5mm); }
 
-    .quick-ref strong {
-      font-family: var(--font-display);
-      font-size: 10pt;
+    .notes {
+      display: grid;
+      grid-template-columns: 1.45fr 0.55fr;
+      gap: 5mm;
+      border-top: 1px solid var(--line);
+      padding-top: 4.5mm;
+      margin-bottom: 7mm;
+    }
+    .notes > p {
+      color: var(--mute);
+      font-size: 7.2pt;
+      line-height: 1.6;
+    }
+    .refs {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 3.5mm 4mm;
+      display: grid;
+      gap: 2.5mm;
+    }
+    .refs span {
+      display: block;
+      font-size: 6pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8mm;
+    }
+    .refs strong {
+      font-family: var(--display);
+      font-size: 9.5pt;
       font-weight: 500;
     }
 
     .signoff {
       text-align: center;
-      border-top: 1px solid var(--frame);
-      padding-top: 7mm;
+      border-top: 1px solid var(--line);
+      padding-top: 6mm;
     }
-
-    .signoff-logo {
-      width: 42mm;
-      margin: 0 auto 3mm;
-    }
-
-    .signoff-logo img {
-      width: 100%;
-      height: auto;
-    }
-
+    .signoff-logo { width: 36mm; margin: 0 auto 3mm; }
+    .signoff-logo img { width: 100%; height: auto; }
     .signoff-tag {
-      font-family: var(--font-display);
+      font-family: var(--display);
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      font-size: 9pt;
+      font-size: 8.5pt;
       margin-bottom: 2mm;
     }
-
-    .signoff-line {
-      color: var(--mute);
-      font-size: 9pt;
-    }
+    .signoff-line { color: var(--mute); font-size: 8.5pt; }
   </style>
 </head>
 <body>
-  <!-- PAGE 1: COVER -->
+  <!-- PAGE 1 -->
   <section class="page">
     <div class="frame"></div>
-    <div class="cover-media">
-      <img src="images/gold-iphone.jpg" alt="">
-    </div>
-    <div class="cover-copy">
-      <h1 class="cover-logo">
-        <img src="images/logo.png" alt="4EP Gold">
-      </h1>
+    <div class="cover-bg"><img src="images/gold-iphone.jpg" alt=""></div>
+    <p class="cover-mark">24K Gold-Plated Collection</p>
+    <div class="cover-content">
+      <h1 class="cover-logo"><img src="images/logo.png" alt="4EP Gold"></h1>
       <p class="cover-tag">Technology, Elevated.</p>
-      <p class="cover-sub">24K Gold-Plated Collection</p>
-      <p class="cover-body">Discover a refined expression of technology, crafted for those who appreciate exclusivity, precision and distinction.</p>
+      <p class="cover-sub">Luxury Technology Catalog</p>
+      <p class="cover-copy">Discover a refined expression of technology, crafted for those who appreciate exclusivity, precision and distinction.</p>
     </div>
   </section>
 
-  <!-- PAGE 2: PRODUCTS -->
+  <!-- PAGE 2 -->
   <section class="page">
     <div class="frame"></div>
     <div class="pad">
       <header class="products-head">
-        <p class="label">Collection</p>
-        <h2 class="headline">4EP Gold iPhone Collection</h2>
+        <p class="eyebrow">Collection</p>
+        <h2 class="title">4EP Gold iPhone Collection</h2>
       </header>
 
-      <div class="product-stage">
-        <div class="gallery">
-          <figure class="shot shot-main"><img src="images/gold-iphone.jpg" alt=""></figure>
-          <figure class="shot shot-alt shot-cutout"><img src="images/cutouts/collection-fan-cutout.png" alt=""></figure>
-          <figure class="shot shot-alt"><img src="images/rose-engraved.jpg" alt=""></figure>
-        </div>
-        <div class="price-board">
-          <article class="price-item">
-            <h3>iPhone 17 Pro</h3>
-            <div class="price-line"><span>512GB</span><strong>From $3,800</strong></div>
-            <div class="price-line"><span>1TB</span><strong>From $4,100</strong></div>
-          </article>
-          <article class="price-item">
-            <h3>iPhone 17 Pro Max</h3>
-            <div class="price-line"><span>512GB</span><strong>From $4,000</strong></div>
-            <div class="price-line"><span>1TB</span><strong>From $4,300</strong></div>
-          </article>
-          <article class="price-item">
-            <h3>iPhone 18 Pro</h3>
-            <div class="price-line"><span>512GB</span><strong>From $4,300</strong></div>
-            <div class="price-line"><span>1TB</span><strong>From $4,600</strong></div>
-          </article>
-          <article class="price-item">
-            <h3>iPhone 18 Pro Max</h3>
-            <div class="price-line"><span>512GB</span><strong>From $4,500</strong></div>
-            <div class="price-line"><span>1TB</span><strong>From $4,800</strong></div>
-          </article>
-        </div>
+      <div class="hero-row">
+        <figure class="hero-shot"><img src="images/gold-iphone.jpg" alt=""></figure>
+        <figure class="art-shot"><img src="images/cutouts/collection-fan-cutout.png" alt=""></figure>
       </div>
 
-      <hr class="gold-rule">
+      <div class="price-grid">
+        <article class="price-item">
+          <h3>iPhone 17 Pro</h3>
+          <div class="price-line"><span>512GB</span><strong>From $3,800</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $4,100</strong></div>
+        </article>
+        <article class="price-item">
+          <h3>iPhone 17 Pro Max</h3>
+          <div class="price-line"><span>512GB</span><strong>From $4,000</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $4,300</strong></div>
+        </article>
+        <article class="price-item">
+          <h3>iPhone 18 Pro</h3>
+          <div class="price-line"><span>512GB</span><strong>From $4,300</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $4,600</strong></div>
+        </article>
+        <article class="price-item">
+          <h3>iPhone 18 Pro Max</h3>
+          <div class="price-line"><span>512GB</span><strong>From $4,500</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $4,800</strong></div>
+        </article>
+      </div>
 
-      <div class="watch-block">
+      <hr class="rule">
+
+      <div class="watch-row">
         <div class="watch-copy">
-          <p class="label">4EP Gold Apple Watch Collection</p>
-          <h2 class="headline">Apple Watch — All Series</h2>
+          <p class="eyebrow">Apple Watch Collection</p>
+          <h2 class="title">Apple Watch — All Series</h2>
           <p class="watch-price">From $1,500</p>
           <p class="watch-note">Available across Apple Watch series, subject to device availability and customization requirements.</p>
         </div>
-        <figure class="watch-shot"><img src="images/gold-watch.jpg" alt=""></figure>
+        <figure class="watch-visual"><img src="images/gold-watch.jpg" alt=""></figure>
       </div>
     </div>
   </section>
 
-  <!-- PAGE 3: BESPOKE -->
+  <!-- PAGE 3 -->
   <section class="page">
     <div class="frame"></div>
     <div class="pad">
-      <div class="bespoke-top">
+      <div class="bespoke-grid">
         <div class="bespoke-copy">
-          <p class="label">Atelier</p>
-          <h2 class="headline">Bespoke Customization</h2>
+          <p class="eyebrow">Atelier</p>
+          <h2 class="title">Bespoke Customization</h2>
           <p>Your 4EP Gold piece can be customized beyond the standard 24K gold-plated finish.</p>
-          <ul class="bespoke-list">
+          <ul class="list">
             <li>Pure Gold Engraving</li>
             <li>Diamond Setting</li>
             <li>Special Finishes</li>
@@ -557,41 +452,37 @@
             <li>Limited / Numbered Editions</li>
           </ul>
         </div>
-        <aside class="quote-card">
+        <aside class="quote">
           <h3>Custom Quotations</h3>
           <p>Please contact 4EP Gold for a personalized quotation for pure gold engraving, diamonds, special finishes and other bespoke customizations.</p>
         </aside>
       </div>
 
-      <div class="finish-row">
-        <figure>
-          <div class="shot"><img src="images/emerald-engraved.jpg" alt=""></div>
-          <figcaption class="finish-caption">Emerald engraved</figcaption>
+      <div class="finishes">
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/rose-engraved.jpg" alt=""></div>
+          <figcaption>Rose engraved</figcaption>
         </figure>
-        <figure>
-          <div class="shot"><img src="images/rose-engraved.jpg" alt=""></div>
-          <figcaption class="finish-caption">Rose engraved</figcaption>
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/emerald-engraved.jpg" alt=""></div>
+          <figcaption>Emerald engraved</figcaption>
+        </figure>
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/gold-iphone.jpg" alt=""></div>
+          <figcaption>24K limited edition</figcaption>
         </figure>
       </div>
 
-      <div class="footer-notes">
+      <div class="notes">
         <p>All prices displayed are starting prices. Final pricing may vary depending on device model, storage capacity, customization requirements, materials used, diamond specifications, engraving, and special finishing.</p>
-        <div class="quick-ref">
-          <div>
-            <span>1TB Upgrade</span>
-            <strong>+$300</strong>
-          </div>
-          <div>
-            <span>Pro vs Pro Max</span>
-            <strong>$200 difference</strong>
-          </div>
+        <div class="refs">
+          <div><span>1TB Upgrade</span><strong>+$300</strong></div>
+          <div><span>Pro vs Pro Max</span><strong>$200 difference</strong></div>
         </div>
       </div>
 
       <footer class="signoff">
-        <div class="signoff-logo">
-          <img src="images/logo.png" alt="4EP Gold">
-        </div>
+        <div class="signoff-logo"><img src="images/logo.png" alt="4EP Gold"></div>
         <p class="signoff-tag">Technology, Elevated.</p>
         <p class="signoff-line">Crafted for distinction. Made to be remembered.</p>
       </footer>
