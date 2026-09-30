@@ -113,38 +113,24 @@
     }
 
     /* COVER */
-    .cover-media {
-      position: absolute;
-      inset: 0;
-    }
-
-    .cover-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 18%;
-    }
-
-    .cover-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
+    .cover-page {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      align-items: center;
       background:
-        linear-gradient(115deg, rgba(10, 10, 11, 0.9) 0%, rgba(10, 10, 11, 0.4) 52%, rgba(10, 10, 11, 0.72) 100%),
-        linear-gradient(to top, rgba(10, 10, 11, 0.94) 0%, transparent 46%);
+        radial-gradient(ellipse 50% 45% at 78% 42%, rgba(201, 162, 39, 0.14), transparent 60%),
+        linear-gradient(160deg, #0d0d0f, #0a0a0b 55%, #12110e);
     }
 
     .cover-copy {
-      position: absolute;
-      left: 18mm;
-      right: 18mm;
-      bottom: 22mm;
+      position: relative;
       z-index: 2;
-      max-width: 120mm;
+      padding: 18mm 10mm 18mm 18mm;
+      max-width: 95mm;
     }
 
     .cover-logo {
-      width: 58mm;
+      width: 48mm;
       margin-bottom: 5mm;
     }
 
@@ -155,14 +141,14 @@
 
     .cover-tag {
       font-family: var(--font-display);
-      font-size: 12pt;
+      font-size: 11pt;
       letter-spacing: 0.32em;
       text-transform: uppercase;
       margin-bottom: 3mm;
     }
 
     .cover-sub {
-      font-size: 8pt;
+      font-size: 7.5pt;
       letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--gold-bright);
@@ -172,8 +158,21 @@
 
     .cover-body {
       color: rgba(247, 247, 245, 0.75);
-      font-size: 10pt;
+      font-size: 9.5pt;
       line-height: 1.55;
+    }
+
+    .cover-art {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18mm 14mm 18mm 4mm;
+    }
+
+    .cover-art img {
+      width: 88mm;
+      height: auto;
+      filter: drop-shadow(0 10mm 12mm rgba(0, 0, 0, 0.55));
     }
 
     /* PRODUCTS */
@@ -208,21 +207,41 @@
     .shot {
       overflow: hidden;
       border: 1px solid var(--frame);
-      background: var(--charcoal);
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 55%, rgba(201, 162, 39, 0.08), transparent 65%),
+        var(--obsidian-lift);
+      display: grid;
+      place-items: center;
+      padding: 3mm;
     }
 
     .shot img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     .shot-main {
       grid-row: 1 / 3;
     }
 
-    .shot-main img { object-position: center 18%; }
-    .shot-alt img { object-position: center 22%; }
+    .watch-shot {
+      height: 58mm;
+      border: 1px solid var(--frame);
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 65% 55% at 50% 55%, rgba(201, 162, 39, 0.1), transparent 65%),
+        var(--obsidian-lift);
+      display: grid;
+      place-items: center;
+      padding: 4mm;
+    }
+
+    .watch-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
     .price-board {
       border: 1px solid var(--frame);
@@ -288,20 +307,6 @@
       color: var(--mute);
       font-size: 8.5pt;
       line-height: 1.5;
-    }
-
-    .watch-shot {
-      height: 58mm;
-      border: 1px solid var(--frame);
-      overflow: hidden;
-      background: var(--charcoal);
-    }
-
-    .watch-shot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 32%;
     }
 
     /* BESPOKE */
@@ -377,7 +382,19 @@
       height: 62mm;
     }
 
-    .finish-row .shot img { object-position: center 18%; }
+    .finish-row .shot {
+      height: 100%;
+      padding: 3.5mm;
+    }
+
+    .finish-caption {
+      margin-top: 1.5mm;
+      text-align: center;
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
 
     .footer-notes {
       border-top: 1px solid var(--frame);
@@ -449,11 +466,8 @@
 </head>
 <body>
   <!-- PAGE 1: COVER -->
-  <section class="page">
+  <section class="page cover-page">
     <div class="frame"></div>
-    <div class="cover-media">
-      <img src="images/gold-iphone.jpg" alt="">
-    </div>
     <div class="cover-copy">
       <h1 class="cover-logo">
         <img src="images/logo.png" alt="4EP Gold">
@@ -462,6 +476,9 @@
       <p class="cover-sub">24K Gold-Plated Collection</p>
       <p class="cover-body">Discover a refined expression of technology, crafted for those who appreciate exclusivity, precision and distinction.</p>
     </div>
+    <figure class="cover-art">
+      <img src="images/cutouts/gold-iphone-cutout.png" alt="">
+    </figure>
   </section>
 
   <!-- PAGE 2: PRODUCTS -->
@@ -475,9 +492,9 @@
 
       <div class="product-stage">
         <div class="gallery">
-          <figure class="shot shot-main"><img src="images/gold-iphone.jpg" alt=""></figure>
-          <figure class="shot shot-alt"><img src="images/collection-fan.jpg" alt=""></figure>
-          <figure class="shot shot-alt"><img src="images/rose-engraved.jpg" alt=""></figure>
+          <figure class="shot shot-main"><img src="images/cutouts/gold-iphone-cutout.png" alt=""></figure>
+          <figure class="shot shot-alt"><img src="images/cutouts/collection-fan-cutout.png" alt=""></figure>
+          <figure class="shot shot-alt"><img src="images/cutouts/rose-engraved-cutout.png" alt=""></figure>
         </div>
         <div class="price-board">
           <article class="price-item">
@@ -512,7 +529,7 @@
           <p class="watch-price">From $1,500</p>
           <p class="watch-note">Available across Apple Watch series, subject to device availability and customization requirements.</p>
         </div>
-        <figure class="watch-shot"><img src="images/gold-watch.jpg" alt=""></figure>
+        <figure class="watch-shot"><img src="images/cutouts/gold-watch-cutout.png" alt=""></figure>
       </div>
     </div>
   </section>
@@ -542,8 +559,14 @@
       </div>
 
       <div class="finish-row">
-        <figure class="shot"><img src="images/emerald-engraved.jpg" alt=""></figure>
-        <figure class="shot"><img src="images/rose-engraved.jpg" alt=""></figure>
+        <figure>
+          <div class="shot"><img src="images/cutouts/emerald-engraved-cutout.png" alt=""></div>
+          <figcaption class="finish-caption">Emerald engraved</figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="images/cutouts/rose-engraved-cutout.png" alt=""></div>
+          <figcaption class="finish-caption">Rose engraved</figcaption>
+        </figure>
       </div>
 
       <div class="footer-notes">
