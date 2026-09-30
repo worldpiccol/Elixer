@@ -286,33 +286,45 @@
     }
 
     /* ——— BESPOKE ——— */
+    .pad-bespoke {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 14mm 16mm 12mm;
+      box-sizing: border-box;
+      overflow: hidden;
+      gap: 5mm;
+      position: relative;
+      z-index: 2;
+    }
+
     .bespoke-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 6mm;
-      margin-bottom: 6mm;
+      gap: 5mm;
+      flex: 0 0 auto;
     }
-    .bespoke-copy .title { font-size: 16pt; margin-bottom: 3mm; }
+    .bespoke-copy .title { font-size: 15pt; margin-bottom: 2.5mm; }
     .bespoke-copy > p {
       color: var(--mute);
-      font-size: 9pt;
-      line-height: 1.55;
-      margin-bottom: 4mm;
+      font-size: 8.5pt;
+      line-height: 1.5;
+      margin-bottom: 3mm;
     }
     .list { border-top: 1px solid var(--line); }
     .list li {
       display: flex;
       align-items: center;
-      gap: 3mm;
-      padding: 2.6mm 0;
+      gap: 2.5mm;
+      padding: 2.1mm 0;
       border-bottom: 1px solid var(--line);
-      font-size: 9pt;
+      font-size: 8.5pt;
       color: #e4e3df;
     }
     .list li::before {
       content: "";
-      width: 2mm;
-      height: 2mm;
+      width: 1.8mm;
+      height: 1.8mm;
       background: var(--gold);
       transform: rotate(45deg);
       flex-shrink: 0;
@@ -320,71 +332,93 @@
     .quote {
       border: 1px solid rgba(201,162,39,0.45);
       background: linear-gradient(165deg, #17171b, #101012);
-      padding: 6mm;
+      padding: 5mm;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 3mm;
+      gap: 2.5mm;
     }
     .quote h3 {
       font-family: var(--display);
-      font-size: 9.5pt;
+      font-size: 9pt;
       letter-spacing: 0.18em;
       color: var(--gold-soft);
       font-weight: 500;
     }
     .quote p {
       color: var(--mute);
-      font-size: 8.2pt;
-      line-height: 1.55;
+      font-size: 8pt;
+      line-height: 1.5;
     }
 
     .finishes {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 3mm;
-      margin-bottom: 6mm;
-      height: 58mm;
+      gap: 3.5mm;
+      flex: 1 1 auto;
+      min-height: 55mm;
+      max-height: 78mm;
+      align-content: stretch;
     }
-    .finish-shot img { object-position: center 18%; }
+    .finish {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+    }
+    .finish-shot {
+      flex: 1 1 auto;
+      min-height: 0;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: var(--panel);
+    }
+    .finish-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+    }
     .finish figcaption {
-      margin-top: 1.5mm;
+      flex: 0 0 auto;
+      margin-top: 2mm;
       text-align: center;
       font-size: 6pt;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--gold);
     }
-    .finish .finish-shot { height: calc(100% - 5mm); }
 
     .notes {
+      flex: 0 0 auto;
       display: block;
       border-top: 1px solid var(--line);
-      padding-top: 4.5mm;
-      margin-bottom: 7mm;
+      padding-top: 3.5mm;
     }
     .notes > p {
       color: var(--mute);
-      font-size: 7.2pt;
-      line-height: 1.6;
-      max-width: 140mm;
+      font-size: 7pt;
+      line-height: 1.55;
+      max-width: 155mm;
     }
 
     .signoff {
+      flex: 0 0 auto;
       text-align: center;
       border-top: 1px solid var(--line);
-      padding-top: 6mm;
+      padding-top: 4.5mm;
+      margin-top: 1mm;
     }
-    .signoff-logo { width: 36mm; margin: 0 auto 3mm; }
+    .signoff-logo { width: 30mm; margin: 0 auto 2.5mm; }
     .signoff-logo img { width: 100%; height: auto; }
     .signoff-tag {
       font-family: var(--display);
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      font-size: 8.5pt;
-      margin-bottom: 2mm;
+      font-size: 8pt;
+      margin-bottom: 1.5mm;
     }
-    .signoff-line { color: var(--mute); font-size: 8.5pt; }
+    .signoff-line { color: var(--mute); font-size: 8pt; }
   </style>
 </head>
 <body>
@@ -460,7 +494,7 @@
   <!-- PAGE 3 -->
   <section class="page">
     <div class="frame"></div>
-    <div class="pad">
+    <div class="pad-bespoke">
       <div class="bespoke-grid">
         <div class="bespoke-copy">
           <p class="eyebrow">Atelier</p>
