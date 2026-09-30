@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="4EP Gold — 24K gold-plated technology collection. Crafted for exclusivity, precision and distinction.">
+  <title>4EP Gold — Technology, Elevated.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #16181a;
+      --ink-soft: #3a3f45;
+      --mist: #eef1f4;
+      --pearl: #f6f7f9;
+      --stone: #d5dae0;
+      --gold: #b8943f;
+      --gold-bright: #d4b56a;
+      --gold-deep: #8a6b28;
+      --gold-wash: rgba(184, 148, 63, 0.14);
+      --line: rgba(22, 24, 26, 0.1);
+      --white: #ffffff;
+      --font-display: "Cinzel", "Times New Roman", serif;
+      --font-body: "Outfit", sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --max: 1120px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: var(--pearl);
+      line-height: 1.55;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    .wrap {
+      width: min(100% - 2.5rem, var(--max));
+      margin-inline: auto;
+    }
+
+    /* ——— Nav ——— */
+    .nav {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 20;
+      padding: 1.4rem 0;
+    }
+
+    .nav-inner {
+      width: min(100% - 2.5rem, var(--max));
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.28em;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.78);
+      transition: color 0.3s var(--ease);
+    }
+
+    .nav-links a:hover { color: var(--gold-bright); }
+
+    .nav-cta {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--gold-bright);
+      padding: 0.7rem 1.15rem;
+      transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+
+    .nav-cta:hover {
+      background: var(--white);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+    }
+
+    /* ——— Hero ——— */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      place-items: end stretch;
+      color: var(--white);
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(115deg, rgba(22, 24, 26, 0.72) 0%, rgba(22, 24, 26, 0.28) 48%, rgba(22, 24, 26, 0.55) 100%),
+        url("https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=2400&q=80") center / cover no-repeat;
+      transform: scale(1.06);
+      animation: hero-drift 18s var(--ease) infinite alternate;
+    }
+
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 70% 40%, rgba(212, 181, 106, 0.22), transparent 60%),
+        linear-gradient(to top, rgba(22, 24, 26, 0.55), transparent 42%);
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.18;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .hero-content {
+      width: min(100% - 2.5rem, var(--max));
+      margin: 0 auto 6.5rem;
+      max-width: 38rem;
+      animation: rise 1.1s var(--ease) both;
+    }
+
+    .hero-brand {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 8vw, 5.6rem);
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      line-height: 1;
+      margin-bottom: 1.1rem;
+      background: linear-gradient(120deg, #f4e4b4 0%, #d4b56a 40%, #f7efd4 58%, #b8943f 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: brand-shine 6s ease-in-out infinite;
+      background-size: 200% 100%;
+    }
+
+    .hero-tag {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2.4vw, 1.35rem);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .hero-copy {
+      font-size: 1.05rem;
+      max-width: 30rem;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.85rem;
+      padding: 0.75rem 1.4rem;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--ink);
+      border: 1px solid var(--gold);
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-bright);
+      border-color: var(--gold-bright);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold-bright);
+      color: var(--gold-bright);
+    }
+
+    /* ——— Section chrome ——— */
+    section {
+      padding: clamp(4.5rem, 10vw, 7.5rem) 0;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 0.85rem;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3.8vw, 2.55rem);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      max-width: 36rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+
+    .reveal.is-in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ——— Intro band ——— */
+    .intro {
+      background:
+        linear-gradient(180deg, var(--mist), var(--pearl));
+      position: relative;
+    }
+
+    .intro::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 40% at 10% 20%, var(--gold-wash), transparent 70%),
+        radial-gradient(ellipse 40% 35% at 90% 80%, rgba(184, 148, 63, 0.08), transparent 65%);
+      pointer-events: none;
+    }
+
+    .intro .wrap {
+      position: relative;
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: end;
+    }
+
+    .intro-aside {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      letter-spacing: 0.12em;
+      line-height: 1.05;
+      color: var(--gold);
+      text-align: right;
+    }
+
+    @media (max-width: 800px) {
+      .intro .wrap { grid-template-columns: 1fr; }
+      .intro-aside { text-align: left; }
+    }
+
+    /* ——— Collection ——— */
+    .collection {
+      background: var(--pearl);
+    }
+
+    .collection-head {
+      margin-bottom: 3rem;
+      max-width: 40rem;
+    }
+
+    .phone-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .phone-item {
+      background: var(--white);
+      padding: clamp(1.6rem, 3vw, 2.4rem);
+      display: grid;
+      gap: 1.1rem;
+      transition: background 0.35s var(--ease);
+    }
+
+    .phone-item:hover {
+      background: linear-gradient(160deg, #fffef9, #f7f1e4);
+    }
+
+    .phone-name {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+    }
+
+    .phone-prices {
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding-top: 0.55rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.95rem;
+    }
+
+    .price-row:first-child { border-top: 0; padding-top: 0; }
+
+    .price-row span:first-child {
+      color: var(--ink-soft);
+      letter-spacing: 0.04em;
+    }
+
+    .price-row strong {
+      font-weight: 500;
+      font-family: var(--font-display);
+      letter-spacing: 0.04em;
+      color: var(--gold-deep);
+    }
+
+    @media (max-width: 700px) {
+      .phone-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ——— Watch ——— */
+    .watch {
+      position: relative;
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .watch-media {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(105deg, rgba(22, 24, 26, 0.88) 0%, rgba(22, 24, 26, 0.55) 55%, rgba(22, 24, 26, 0.72) 100%),
+        url("https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?auto=format&fit=crop&w=2000&q=80") center / cover no-repeat;
+    }
+
+    .watch .wrap {
+      position: relative;
+      display: grid;
+      gap: 1.5rem;
+      max-width: 34rem;
+    }
+
+    .watch .section-label { color: var(--gold-bright); }
+    .watch .section-lead { color: rgba(255, 255, 255, 0.72); }
+
+    .watch-price {
+      margin-top: 0.5rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: 0.08em;
+      color: var(--gold-bright);
+    }
+
+    .watch-note {
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.58);
+      max-width: 28rem;
+    }
+
+    /* ——— Bespoke ——— */
+    .bespoke {
+      background:
+        linear-gradient(180deg, var(--pearl), var(--mist));
+    }
+
+    .bespoke-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 6vw, 5rem);
+      align-items: start;
+    }
+
+    .bespoke-list {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .bespoke-list li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.05rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 1.02rem;
+      letter-spacing: 0.02em;
+      transform: translateX(0);
+      transition: transform 0.35s var(--ease), color 0.35s var(--ease);
+    }
+
+    .bespoke-list li:hover {
+      transform: translateX(6px);
+      color: var(--gold-deep);
+    }
+
+    .bespoke-list li::before {
+      content: "";
+      width: 0.55rem;
+      height: 0.55rem;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep));
+    }
+
+    .quote-panel {
+      background:
+        linear-gradient(145deg, rgba(184, 148, 63, 0.12), rgba(184, 148, 63, 0.03)),
+        var(--white);
+      border: 1px solid rgba(184, 148, 63, 0.28);
+      padding: clamp(1.8rem, 4vw, 2.6rem);
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    .quote-panel h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    .quote-panel p {
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+    }
+
+    @media (max-width: 800px) {
+      .bespoke-layout { grid-template-columns: 1fr; }
+    }
+
+    /* ——— Pricing ——— */
+    .pricing {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .pricing .section-label { color: var(--gold-bright); }
+    .pricing .section-lead { color: rgba(255, 255, 255, 0.65); }
+
+    .pricing-grid {
+      margin-top: 2.75rem;
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: clamp(2rem, 5vw, 4rem);
+    }
+
+    .factor-factors {
+      display: grid;
+      gap: 0.75rem;
+      columns: 2;
+      column-gap: 2rem;
+    }
+
+    .factor-factors li {
+      break-inside: avoid;
+      padding: 0.55rem 0 0.55rem 1.1rem;
+      position: relative;
+      color: rgba(255, 255, 255, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .factor-factors li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1.05rem;
+      width: 0.4rem;
+      height: 0.4rem;
+      background: var(--gold);
+    }
+
+    .price-notes {
+      display: grid;
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      align-self: start;
+    }
+
+    .price-note {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 1.4rem 1.5rem;
+    }
+
+    .price-note span {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      margin-bottom: 0.45rem;
+    }
+
+    .price-note strong {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 800px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .factor-factors { columns: 1; }
+    }
+
+    /* ——— Closing ——— */
+    .closing {
+      position: relative;
+      min-height: 70svh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .closing-media {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(22, 24, 26, 0.55), rgba(22, 24, 26, 0.78)),
+        url("https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=2200&q=80") center / cover no-repeat;
+      animation: hero-drift 22s var(--ease) infinite alternate;
+    }
+
+    .closing-inner {
+      position: relative;
+      padding: 4rem 1.5rem;
+      max-width: 40rem;
+    }
+
+    .closing-brand {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      letter-spacing: 0.2em;
+      font-weight: 600;
+      margin-bottom: 0.85rem;
+      background: linear-gradient(120deg, #f4e4b4, #d4b56a 45%, #f7efd4 70%, #b8943f);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 200% 100%;
+      animation: brand-shine 7s ease-in-out infinite;
+    }
+
+    .closing-tag {
+      font-family: var(--font-display);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .closing-line {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 1.08rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ——— Footer ——— */
+    footer {
+      background: var(--ink);
+      color: rgba(255, 255, 255, 0.45);
+      padding: 1.5rem 0 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    footer strong {
+      color: var(--gold-bright);
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: 0.18em;
+    }
+
+    /* ——— Motion ——— */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(36px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @keyframes hero-drift {
+      from { transform: scale(1.06) translate3d(0, 0, 0); }
+      to { transform: scale(1.12) translate3d(-1.5%, -1%, 0); }
+    }
+
+    @keyframes brand-shine {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media print {
+      .nav, .hero-actions, .nav-cta { display: none !important; }
+      .hero { min-height: auto; padding: 4rem 0; }
+      section { padding: 2rem 0; break-inside: avoid; }
+      .hero-media, .watch-media, .closing-media {
+        animation: none;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top">4EP GOLD</a>
+      <nav class="nav-links" aria-label="Brochure">
+        <a href="#iphone">iPhone</a>
+        <a href="#watch">Watch</a>
+        <a href="#bespoke">Bespoke</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <a class="nav-cta" href="#bespoke">Request Quote</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="4EP Gold introduction">
+      <div class="hero-media" role="img" aria-label="Close-up of polished gold surface"></div>
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="hero-content">
+        <h1 class="hero-brand">4EP GOLD</h1>
+        <p class="hero-tag">Technology, Elevated.</p>
+        <p class="hero-copy">Discover a refined expression of technology, crafted for those who appreciate exclusivity, precision and distinction.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#iphone">View Collection</a>
+          <a class="btn btn-ghost" href="#bespoke">Bespoke Options</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro" aria-labelledby="collection-intro">
+      <div class="wrap reveal">
+        <div>
+          <p class="section-label">24K Gold-Plated Collection</p>
+          <h2 class="section-title" id="collection-intro">Precision finished in pure gold.</h2>
+          <p class="section-lead">Each 4EP Gold piece begins with leading technology and is elevated through a meticulous 24K gold-plated finish — made for presence, permanence, and personal distinction.</p>
+        </div>
+        <p class="intro-aside">Crafted for<br>distinction.</p>
+      </div>
+    </section>
+
+    <section class="collection" id="iphone" aria-labelledby="iphone-title">
+      <div class="wrap">
+        <div class="collection-head reveal">
+          <p class="section-label">4EP Gold iPhone Collection</p>
+          <h2 class="section-title" id="iphone-title">iPhone, finished in 24K gold.</h2>
+          <p class="section-lead">Starting prices by model and storage. Final quotations reflect customization and materials.</p>
+        </div>
+
+        <div class="phone-grid reveal">
+          <article class="phone-item">
+            <h3 class="phone-name">iPhone 17 Pro</h3>
+            <div class="phone-prices">
+              <div class="price-row"><span>512GB</span><strong>From $3,800</strong></div>
+              <div class="price-row"><span>1TB</span><strong>From $4,100</strong></div>
+            </div>
+          </article>
+
+          <article class="phone-item">
+            <h3 class="phone-name">iPhone 17 Pro Max</h3>
+            <div class="phone-prices">
+              <div class="price-row"><span>512GB</span><strong>From $4,000</strong></div>
+              <div class="price-row"><span>1TB</span><strong>From $4,300</strong></div>
+            </div>
+          </article>
+
+          <article class="phone-item">
+            <h3 class="phone-name">iPhone 18 Pro</h3>
+            <div class="phone-prices">
+              <div class="price-row"><span>512GB</span><strong>From $4,300</strong></div>
+              <div class="price-row"><span>1TB</span><strong>From $4,600</strong></div>
+            </div>
+          </article>
+
+          <article class="phone-item">
+            <h3 class="phone-name">iPhone 18 Pro Max</h3>
+            <div class="phone-prices">
+              <div class="price-row"><span>512GB</span><strong>From $4,500</strong></div>
+              <div class="price-row"><span>1TB</span><strong>From $4,800</strong></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="watch" id="watch" aria-labelledby="watch-title">
+      <div class="watch-media" role="img" aria-label="Luxury gold wristwatch detail"></div>
+      <div class="wrap reveal">
+        <p class="section-label">4EP Gold Apple Watch Collection</p>
+        <h2 class="section-title" id="watch-title">Apple Watch — All Series</h2>
+        <p class="watch-price">From $1,500</p>
+        <p class="watch-note">Available across Apple Watch series, subject to device availability and customization requirements.</p>
+      </div>
+    </section>
+
+    <section class="bespoke" id="bespoke" aria-labelledby="bespoke-title">
+      <div class="wrap bespoke-layout">
+        <div class="reveal">
+          <p class="section-label">Bespoke Customization</p>
+          <h2 class="section-title" id="bespoke-title">Beyond the standard finish.</h2>
+          <p class="section-lead" style="margin-bottom: 2rem;">Your 4EP Gold piece can be customized beyond the standard 24K gold-plated finish. Available upon request:</p>
+          <ul class="bespoke-list">
+            <li>Pure Gold Engraving</li>
+            <li>Diamond Setting</li>
+            <li>Special Finishes</li>
+            <li>Custom Engraving &amp; Personalization</li>
+            <li>Bespoke Designs</li>
+            <li>Limited / Numbered Editions</li>
+          </ul>
+        </div>
+
+        <aside class="quote-panel reveal">
+          <h3>Custom Quotations</h3>
+          <p>Please contact 4EP Gold for a personalized quotation for pure gold engraving, diamonds, special finishes and other bespoke customizations.</p>
+          <a class="btn btn-gold" href="mailto:hello@4epgold.com?subject=4EP%20Gold%20Custom%20Quotation">Contact 4EP Gold</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="section-label">Pricing Information</p>
+          <h2 class="section-title" id="pricing-title">All prices displayed are starting prices.</h2>
+          <p class="section-lead">Final pricing may vary depending on the details of your commission.</p>
+        </div>
+
+        <div class="pricing-grid reveal">
+          <ul class="factor-factors">
+            <li>Device model</li>
+            <li>Storage capacity</li>
+            <li>Customization requirements</li>
+            <li>Materials used</li>
+            <li>Diamond specifications</li>
+            <li>Engraving</li>
+            <li>Special finishing</li>
+          </ul>
+
+          <div class="price-notes">
+            <div class="price-note">
+              <span>1TB Upgrade</span>
+              <strong>+$300</strong>
+            </div>
+            <div class="price-note">
+              <span>Pro vs Pro Max</span>
+              <strong>$200 difference</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" aria-label="Closing">
+      <div class="closing-media" role="img" aria-label="Gold jewelry craftsmanship detail"></div>
+      <div class="closing-inner reveal">
+        <p class="closing-brand">4EP GOLD</p>
+        <p class="closing-tag">Technology, Elevated.</p>
+        <p class="closing-line">Crafted for distinction. Made to be remembered.</p>
+        <a class="btn btn-gold" href="mailto:hello@4epgold.com?subject=4EP%20Gold%20Inquiry">Begin Your Commission</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <strong>4EP GOLD</strong>
+      <span>24K Gold-Plated Collection · Starting prices shown</span>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-in");
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
+      reveals.forEach((el) => io.observe(el));
+    } else {
+      reveals.forEach((el) => el.classList.add("is-in"));
+    }
+  </script>
+</body>
+</html>
