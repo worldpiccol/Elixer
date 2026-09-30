@@ -395,10 +395,47 @@
     }
     .watch-note { color: var(--mute); font-size: 0.84rem; max-width: 28rem; }
     .watch-visual {
-      aspect-ratio: 4 / 3;
-      max-height: 320px;
+      aspect-ratio: 1 / 1;
+      max-height: 360px;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 55%, rgba(201,162,39,0.12), transparent 65%),
+        var(--panel);
     }
-    .watch-visual img { object-position: center 30%; }
+    .watch-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      filter: drop-shadow(0 16px 26px rgba(0,0,0,0.5));
+    }
+
+    .color-note {
+      margin: 0.85rem 0 0.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem 1rem;
+      padding: 0.85rem 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .color-note span {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+    .color-note strong {
+      font-family: var(--display);
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      color: var(--gold-soft);
+      font-weight: 500;
+    }
 
     /* BESPOKE */
     .bespoke-grid {
@@ -604,6 +641,11 @@
           </figure>
         </div>
 
+        <div class="color-note">
+          <span>Color finishes · Rose · Emerald · Crimson</span>
+          <strong>From $3,500</strong>
+        </div>
+
         <div class="price-grid">
           <article class="price-item">
             <h3>iPhone 17 Pro</h3>
@@ -637,7 +679,7 @@
             <p class="watch-note">Available across Apple Watch series, subject to device availability and customization requirements.</p>
           </div>
           <figure class="watch-visual">
-            <img src="images/gold-watch.jpg" alt="24K gold-plated Apple Watch" width="608" height="1080" loading="lazy">
+            <img src="images/cutouts/gold-watch-cutout.png" alt="24K gold-plated Apple Watch" width="544" height="704" loading="lazy">
           </figure>
         </div>
       </div>
@@ -685,6 +727,7 @@
         <div class="notes">
           <p>All prices displayed are starting prices. Final pricing may vary depending on device model, storage capacity, customization requirements, materials used, diamond specifications, engraving, and special finishing.</p>
           <div class="refs">
+            <div><span>Color Finishes</span><strong>From $3,500</strong></div>
             <div><span>1TB Upgrade</span><strong>+$300</strong></div>
             <div><span>Pro vs Pro Max</span><strong>$200 difference</strong></div>
           </div>
