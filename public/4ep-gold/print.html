@@ -155,8 +155,8 @@
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
       gap: 4.5mm;
-      height: 108mm;
-      margin-bottom: 5mm;
+      height: 98mm;
+      margin-bottom: 4mm;
     }
     .hero-shot, .art-shot, .mini-shot, .watch-visual, .finish-shot {
       border: 1px solid var(--line);
@@ -222,7 +222,7 @@
 
     .watch-row {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1fr 1fr;
       gap: 5mm;
       align-items: center;
     }
@@ -244,17 +244,19 @@
       max-width: 85mm;
     }
     .watch-visual {
-      height: 62mm;
+      height: 72mm;
       display: grid;
       place-items: center;
-      padding: 3.5mm;
+      padding: 4mm;
+      overflow: visible;
       background:
         radial-gradient(ellipse 70% 55% at 50% 55%, rgba(201,162,39,0.12), transparent 65%),
         var(--panel);
     }
     .watch-visual img {
-      width: 100%;
+      width: auto;
       height: 100%;
+      max-width: 100%;
       object-fit: contain;
       object-position: center;
     }
