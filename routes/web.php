@@ -44,6 +44,14 @@ Route::get('/terms', function () {
     return view('frontend.terms');
 });
 
+Route::get('/4ep-gold', function () {
+    return redirect('/4ep-gold/');
+});
+
+Route::get('/4ep-gold/', function () {
+    return response()->file(public_path('4ep-gold/index.html'));
+});
+
 
 Auth::routes();
 Auth::routes(['verify' => true]);

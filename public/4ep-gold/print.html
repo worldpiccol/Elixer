@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>4EP Gold — Brochure PDF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page { size: A4 portrait; margin: 0; }
+
+    :root {
+      --ink: #070708;
+      --panel: #101012;
+      --line: #2b2b30;
+      --mute: #8d8d94;
+      --white: #f5f4f1;
+      --gold: #c9a227;
+      --gold-soft: #dcc56f;
+      --foil: linear-gradient(125deg, #7a6116 0%, #c9a227 28%, #f3e2a0 48%, #c9a227 68%, #97741c 100%);
+      --display: "Cinzel", serif;
+      --sans: "Montserrat", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--ink);
+      color: var(--white);
+      font-family: var(--sans);
+      font-weight: 400;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      background: var(--ink);
+    }
+    .page:last-child { page-break-after: auto; }
+
+    .frame {
+      position: absolute;
+      inset: 10mm;
+      border: 1px solid var(--line);
+      z-index: 4;
+      pointer-events: none;
+    }
+    .frame::before, .frame::after {
+      content: "";
+      position: absolute;
+      width: 7mm;
+      height: 7mm;
+      border: solid var(--gold);
+    }
+    .frame::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+    .frame::after { right: -1px; bottom: -1px; border-width: 0 1px 1px 0; }
+
+    .eyebrow {
+      font-size: 7.5pt;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 3.5mm;
+    }
+    .title {
+      font-family: var(--display);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      line-height: 1.12;
+    }
+    .rule {
+      height: 1px;
+      border: 0;
+      margin: 6mm 0;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.65;
+    }
+
+    /* ——— COVER ——— */
+    .cover-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .cover-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 55% 18%;
+    }
+    .cover-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(105deg, rgba(7,7,8,0.92) 0%, rgba(7,7,8,0.35) 52%, rgba(7,7,8,0.7) 100%),
+        linear-gradient(to top, rgba(7,7,8,0.95) 0%, rgba(7,7,8,0.2) 48%, rgba(7,7,8,0.35) 100%);
+    }
+    .cover-content {
+      position: absolute;
+      left: 16mm;
+      right: 16mm;
+      bottom: 18mm;
+      z-index: 2;
+      max-width: 118mm;
+    }
+    .cover-logo { width: 54mm; margin-bottom: 6mm; }
+    .cover-logo img { width: 100%; height: auto; }
+    .cover-tag {
+      font-family: var(--display);
+      font-size: 11.5pt;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      margin-bottom: 3mm;
+    }
+    .cover-sub {
+      font-size: 7.5pt;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 5mm;
+      font-weight: 500;
+    }
+    .cover-copy {
+      color: rgba(245,244,241,0.74);
+      font-size: 9.5pt;
+      line-height: 1.6;
+      max-width: 98mm;
+    }
+    .cover-mark {
+      position: absolute;
+      top: 16mm;
+      right: 16mm;
+      z-index: 2;
+      font-size: 7pt;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(245,244,241,0.55);
+    }
+
+    /* ——— PRODUCTS ——— */
+    .pad { padding: 16mm; height: 100%; position: relative; z-index: 2; }
+    .products-head { margin-bottom: 6mm; }
+    .products-head .title { font-size: 16pt; }
+
+    .hero-row {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 3.5mm;
+      height: 62mm;
+      margin-bottom: 3mm;
+    }
+    .hero-shot, .art-shot, .mini-shot, .watch-visual, .finish-shot {
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: var(--panel);
+    }
+    .hero-shot img, .mini-shot img, .finish-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-shot {
+      display: grid;
+      place-items: center;
+      padding: 4mm;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 55%, rgba(201,162,39,0.12), transparent 65%),
+        var(--panel);
+    }
+    .hero-shot img {
+      object-fit: contain;
+      object-position: center;
+      filter: drop-shadow(0 4mm 6mm rgba(0,0,0,0.45));
+    }
+    .art-shot {
+      display: grid;
+      place-items: center;
+      padding: 4mm;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 55%, rgba(201,162,39,0.12), transparent 65%),
+        var(--panel);
+    }
+    .art-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4mm 6mm rgba(0,0,0,0.45));
+    }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 6mm;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 3.5mm 0;
+      margin-bottom: 5mm;
+    }
+    .price-item {
+      padding: 3mm 0;
+      border-bottom: 1px solid rgba(43,43,48,0.85);
+    }
+    .price-item:nth-child(3),
+    .price-item:nth-child(4) { border-bottom: 0; }
+    .price-item h3 {
+      font-family: var(--display);
+      font-size: 9pt;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      margin-bottom: 1.4mm;
+    }
+    .price-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 8pt;
+      color: #c8c8ce;
+      font-weight: 500;
+      padding: 0.5mm 0;
+    }
+    .price-line strong {
+      color: var(--gold-soft);
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 8pt;
+    }
+
+    .model-shots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5mm;
+      height: 62mm;
+      margin: 3mm 0 3.5mm;
+    }
+    .model-shot {
+      height: 100%;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: var(--panel);
+      box-sizing: border-box;
+    }
+    .model-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+    .model-shots figure {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+    }
+    .model-shots .model-shot { flex: 1 1 auto; min-height: 0; }
+
+    .watch-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5mm;
+      align-items: center;
+    }
+    .watch-copy .title { font-size: 13pt; margin-bottom: 2.5mm; }
+    .watch-price {
+      font-family: var(--display);
+      font-size: 16pt;
+      letter-spacing: 0.08em;
+      background: var(--foil);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 2mm;
+    }
+    .watch-note {
+      color: #c8c8ce;
+      font-size: 8pt;
+      line-height: 1.5;
+      max-width: 85mm;
+      font-weight: 500;
+    }
+    .watch-visual {
+      height: 48mm;
+      display: grid;
+      place-items: center;
+      padding: 4mm;
+      overflow: visible;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 55%, rgba(201,162,39,0.12), transparent 65%),
+        var(--panel);
+    }
+    .watch-visual img {
+      width: auto;
+      height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .color-note {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 4mm;
+      padding: 2.5mm 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .color-note span {
+      font-size: 8.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      font-weight: 600;
+    }
+    .color-note strong {
+      font-family: var(--display);
+      font-size: 12pt;
+      letter-spacing: 0.06em;
+      color: var(--gold-soft);
+      font-weight: 700;
+    }
+
+    /* ——— BESPOKE ——— */
+    .pad-bespoke {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 14mm 16mm 12mm;
+      box-sizing: border-box;
+      overflow: hidden;
+      gap: 5mm;
+      position: relative;
+      z-index: 2;
+    }
+
+    .bespoke-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 5mm;
+      flex: 0 0 auto;
+    }
+    .bespoke-copy .title { font-size: 15pt; margin-bottom: 2.5mm; }
+    .bespoke-copy > p {
+      color: #c8c8ce;
+      font-size: 8.5pt;
+      line-height: 1.5;
+      margin-bottom: 3mm;
+      font-weight: 500;
+    }
+    .list { border-top: 1px solid var(--line); }
+    .list li {
+      display: flex;
+      align-items: center;
+      gap: 2.5mm;
+      padding: 2.1mm 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 8.5pt;
+      color: #f0efeb;
+      font-weight: 500;
+    }
+    .list li::before {
+      content: "";
+      width: 1.8mm;
+      height: 1.8mm;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .quote {
+      border: 1.5pt solid rgba(201,162,39,0.8);
+      background:
+        linear-gradient(165deg, rgba(201,162,39,0.14), transparent 55%),
+        linear-gradient(165deg, #1c1a14, #12110e);
+      padding: 5.5mm 5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 3.5mm;
+      box-shadow: inset 0 0 0 0.5pt rgba(243,226,160,0.1);
+    }
+    .quote h3 {
+      font-family: var(--display);
+      font-size: 11.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-weight: 700;
+      padding-bottom: 2.5mm;
+      border-bottom: 0.5pt solid rgba(201,162,39,0.5);
+    }
+    .quote p {
+      color: var(--white);
+      font-size: 10.5pt;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+    .quote p strong {
+      color: var(--gold-soft);
+      font-weight: 700;
+    }
+
+    .finishes {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3.5mm;
+      flex: 1 1 auto;
+      min-height: 55mm;
+      max-height: 78mm;
+      align-content: stretch;
+    }
+    .finishes.duo-finishes {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2.5mm;
+      min-height: 68mm;
+      max-height: 90mm;
+    }
+    .finish {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+    }
+    .finish-shot {
+      flex: 1 1 auto;
+      min-height: 0;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: var(--panel);
+    }
+    .finish-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+    }
+    .duo-finishes .finish-shot img { object-position: center 42%; }
+    .finish figcaption {
+      flex: 0 0 auto;
+      margin-top: 2mm;
+      text-align: center;
+      font-size: 7.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-weight: 600;
+    }
+
+    .notes {
+      flex: 0 0 auto;
+      display: block;
+      border-top: 1px solid var(--line);
+      padding-top: 3.5mm;
+    }
+    .notes > p {
+      color: #d6d6db;
+      font-weight: 600;
+      font-size: 7.5pt;
+      line-height: 1.55;
+      max-width: 155mm;
+    }
+
+    .signoff {
+      flex: 0 0 auto;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      padding-top: 4.5mm;
+      margin-top: 1mm;
+    }
+    .signoff-logo { width: 30mm; margin: 0 auto 2.5mm; }
+    .signoff-logo img { width: 100%; height: auto; }
+    .signoff-tag {
+      font-family: var(--display);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-size: 8pt;
+      margin-bottom: 1.5mm;
+    }
+    .signoff-line { color: #c8c8ce; font-size: 8pt; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <!-- PAGE 1 -->
+  <section class="page">
+    <div class="frame"></div>
+    <div class="cover-bg"><img src="images/gold-iphone.jpg" alt=""></div>
+    <p class="cover-mark">24K Gold-Plated Collection</p>
+    <div class="cover-content">
+      <h1 class="cover-logo"><img src="images/logo.png" alt="4EP Gold"></h1>
+      <p class="cover-tag">Technology, Elevated.</p>
+      <p class="cover-sub">Luxury Technology Catalog</p>
+      <p class="cover-copy">Discover a refined expression of technology, crafted for those who appreciate exclusivity, precision and distinction.</p>
+    </div>
+  </section>
+
+  <!-- PAGE 2 -->
+  <section class="page">
+    <div class="frame"></div>
+    <div class="pad">
+      <header class="products-head">
+        <p class="eyebrow">Collection</p>
+        <h2 class="title">4EP Gold iPhone Collection</h2>
+      </header>
+
+      <div class="hero-row">
+        <figure class="hero-shot"><img src="images/cutouts/leather-duo-cutout.png" alt=""></figure>
+        <figure class="art-shot"><img src="images/cutouts/collection-fan-cutout.png" alt=""></figure>
+      </div>
+
+      <div class="price-grid">
+        <article class="price-item">
+          <h3>iPhone 17 Pro</h3>
+          <div class="price-line"><span>512GB</span><strong>From $3,800</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $4,100</strong></div>
+        </article>
+        <article class="price-item">
+          <h3>iPhone 17 Pro Max</h3>
+          <div class="price-line"><span>512GB</span><strong>From $4,000</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $4,300</strong></div>
+        </article>
+        <article class="price-item">
+          <h3>iPhone 18 Pro</h3>
+          <div class="price-line"><span>512GB</span><strong>From $5,500</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $5,800</strong></div>
+        </article>
+        <article class="price-item">
+          <h3>iPhone 18 Pro Max</h3>
+          <div class="price-line"><span>512GB</span><strong>From $6,000</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $6,300</strong></div>
+        </article>
+      </div>
+
+      <div class="model-shots">
+        <figure>
+          <div class="model-shot"><img src="images/cutouts/iphone-18-pro-grid.jpg" alt=""></div>
+        </figure>
+        <figure>
+          <div class="model-shot"><img src="images/cutouts/iphone-18-pro-max-grid.jpg" alt=""></div>
+        </figure>
+      </div>
+
+      <hr class="rule">
+
+      <div class="watch-row">
+        <div class="watch-copy">
+          <p class="eyebrow">Apple Watch Collection</p>
+          <p class="watch-price">From $1,500</p>
+          <p class="watch-note">Available across Apple Watch series, subject to device availability and customization requirements.</p>
+        </div>
+        <figure class="watch-visual"><img src="images/cutouts/gold-watch-cutout.png" alt=""></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 3 -->
+  <section class="page">
+    <div class="frame"></div>
+    <div class="pad-bespoke">
+      <div class="bespoke-grid">
+        <div class="bespoke-copy">
+          <p class="eyebrow">Atelier</p>
+          <h2 class="title">Bespoke Customization</h2>
+          <p>Your 4EP Gold piece can be customized beyond the standard 24K gold-plated finish.</p>
+          <ul class="list">
+            <li>Pure Gold Engraving</li>
+            <li>Diamond Setting</li>
+            <li>Special Finishes</li>
+            <li>Custom Engraving &amp; Personalization</li>
+            <li>Bespoke Designs</li>
+            <li>Limited / Numbered Editions</li>
+          </ul>
+        </div>
+        <aside class="quote">
+          <h3>Custom Quotations</h3>
+          <p>Please contact <strong>4EP Gold</strong> for a personalized quotation for pure gold engraving, diamonds, special finishes and other bespoke customizations.</p>
+        </aside>
+      </div>
+
+      <div class="finishes">
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/rose-engraved.jpg" alt=""></div>
+          <figcaption>Rose engraved</figcaption>
+        </figure>
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/emerald-engraved.jpg" alt=""></div>
+          <figcaption>Emerald engraved</figcaption>
+        </figure>
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/crimson-engraved.jpg" alt=""></div>
+          <figcaption>Crimson engraved</figcaption>
+        </figure>
+      </div>
+
+      <div class="color-note">
+        <span>Color finishes · Rose · Emerald · Crimson</span>
+        <strong>From $3,500</strong>
+      </div>
+
+      <div class="notes">
+        <p>All prices displayed are starting prices. Final pricing may vary depending on device model, storage capacity, customization requirements, materials used, diamond specifications, engraving, and special finishing.</p>
+      </div>
+
+      <footer class="signoff">
+        <div class="signoff-logo"><img src="images/logo.png" alt="4EP Gold"></div>
+        <p class="signoff-tag">Technology, Elevated.</p>
+        <p class="signoff-line">Crafted for distinction. Made to be remembered.</p>
+      </footer>
+    </div>
+  </section>
+
+  <!-- PAGE 4 -->
+  <section class="page">
+    <div class="frame"></div>
+    <div class="pad-bespoke">
+      <div class="bespoke-grid">
+        <div class="bespoke-copy">
+          <p class="eyebrow">Signature Line</p>
+          <h2 class="title">iPhone Duo</h2>
+          <p>Five signature finishes — Nobile Gold, Armor, Nobile Platinum, Helios and Aurelis — crafted as the pinnacle of the 4EP Gold collection.</p>
+          <ul class="list">
+            <li>Nobile Gold</li>
+            <li>Armor</li>
+            <li>Nobile Platinum</li>
+            <li>Helios</li>
+            <li>Aurelis</li>
+          </ul>
+        </div>
+        <aside class="quote">
+          <h3>Duo Pricing</h3>
+          <p><strong>512GB</strong> from $8,000<br><strong>1TB</strong> from $8,600<br><strong>2TB</strong> from $9,400</p>
+        </aside>
+      </div>
+
+      <div class="finishes duo-finishes">
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/duo-nobile-gold.jpg" alt=""></div>
+          <figcaption>Nobile Gold</figcaption>
+        </figure>
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/duo-armor.jpg" alt=""></div>
+          <figcaption>Armor</figcaption>
+        </figure>
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/duo-nobile-platinum.jpg" alt=""></div>
+          <figcaption>Nobile Platinum</figcaption>
+        </figure>
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/duo-helios.jpg" alt=""></div>
+          <figcaption>Helios</figcaption>
+        </figure>
+        <figure class="finish">
+          <div class="finish-shot"><img src="images/duo-aurelis.jpg" alt=""></div>
+          <figcaption>Aurelis</figcaption>
+        </figure>
+      </div>
+
+      <div class="color-note">
+        <span>iPhone Duo · 512GB · 1TB · 2TB</span>
+        <strong>From $8,000</strong>
+      </div>
+
+      <div class="notes">
+        <p>All prices displayed are starting prices. Final pricing may vary depending on device model, storage capacity, customization requirements, materials used, diamond specifications, engraving, and special finishing.</p>
+      </div>
+
+      <footer class="signoff">
+        <div class="signoff-logo"><img src="images/logo.png" alt="4EP Gold"></div>
+        <p class="signoff-tag">Technology, Elevated.</p>
+        <p class="signoff-line">Crafted for distinction. Made to be remembered.</p>
+      </footer>
+    </div>
+  </section>
+</body>
+</html>
