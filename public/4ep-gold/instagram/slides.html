@@ -173,39 +173,41 @@
       box-shadow: 0 30px 60px rgba(0,0,0,0.45);
     }
 
-    /* Duo cards continue from left of slide 5 — below title block */
+    /* Duo full posters — fit inside frames, clear of the mid gold line */
     .river .duo {
-      top: 420px;
-      width: 220px;
-      height: 420px;
-      object-fit: cover;
-      object-position: center 35%;
-      border: 1px solid rgba(201,162,39,0.35);
+      top: 340px;
+      width: 188px;
+      height: 310px;
+      object-fit: contain;
+      object-position: center center;
+      background: #0c0c0e;
+      border: 1px solid rgba(201,162,39,0.55);
+      box-sizing: border-box;
     }
-    .river .d1 { left: 4300px; }
-    .river .d2 { left: 4530px; }
-    .river .d3 { left: 4760px; }
-    .river .d4 { left: 4990px; }
-    .river .d5 { left: 5165px; opacity: 1; }
+    .river .d1 { left: 4358px; }
+    .river .d2 { left: 4562px; }
+    .river .d3 { left: 4766px; }
+    .river .d4 { left: 4970px; }
+    .river .d5 { left: 5174px; opacity: 1; }
 
-    /* Finishes stay lower so they don't fight Duo titles */
+    /* Finishes stay on slide 4 only */
     .river .finish {
       top: 880px;
-      width: 280px;
-      height: 300px;
+      width: 260px;
+      height: 280px;
       object-fit: cover;
       object-position: center 18%;
       border: 1px solid rgba(201,162,39,0.4);
     }
-    .river .f-rose { left: 3880px; }
-    .river .f-emerald { left: 4140px; }
-    .river .f-crimson { left: 4380px; }
+    .river .f-rose { left: 3680px; }
+    .river .f-emerald { left: 3950px; }
+    .river .f-crimson { left: 4220px; width: 260px; height: 280px; opacity: 1; }
 
-    /* Continuous gold path line through middle */
+    /* Mid gold line stops before Duo photos so it isn't cut */
     .flow-path {
       position: absolute;
       left: 0;
-      right: 0;
+      width: 4280px;
       top: 50%;
       height: 1px;
       background: linear-gradient(90deg,
@@ -214,8 +216,8 @@
         rgba(220,197,111,0.55) 25%,
         rgba(201,162,39,0.35) 50%,
         rgba(220,197,111,0.55) 75%,
-        rgba(201,162,39,0.35) 92%,
-        transparent);
+        rgba(201,162,39,0.25) 92%,
+        transparent 100%);
       z-index: 0;
     }
 
@@ -539,11 +541,11 @@
       <img class="finish f-rose" src="../images/rose-engraved.jpg" alt="">
       <img class="finish f-emerald" src="../images/emerald-engraved.jpg" alt="">
       <img class="finish f-crimson" src="../images/crimson-engraved.jpg" alt="">
-      <img class="duo d1" src="../images/cutouts/duo-nobile-gold-phone.jpg" alt="">
-      <img class="duo d2" src="../images/cutouts/duo-armor-phone.jpg" alt="">
-      <img class="duo d3" src="../images/cutouts/duo-nobile-platinum-phone.jpg" alt="">
-      <img class="duo d4" src="../images/cutouts/duo-helios-phone.jpg" alt="">
-      <img class="duo d5" src="../images/cutouts/duo-aurelis-phone.jpg" alt="">
+      <img class="duo d1" src="../images/duo-nobile-gold.jpg" alt="">
+      <img class="duo d2" src="../images/duo-armor.jpg" alt="">
+      <img class="duo d3" src="../images/duo-nobile-platinum.jpg" alt="">
+      <img class="duo d4" src="../images/duo-helios.jpg" alt="">
+      <img class="duo d5" src="../images/duo-aurelis.jpg" alt="">
     </div>
 
     <!-- PANEL 1 -->
@@ -620,7 +622,7 @@
     <section class="panel p5">
       <p class="eyebrow">Signature Line</p>
       <h2 class="title">iPhone Duo</h2>
-      <p class="lede">Five signature finishes — from $8,000.</p>
+      <p class="lede">Nobile Gold · Armor · Nobile Platinum · Helios · Aurelis</p>
       <div class="cta-box">
         <div>
           <h3>Enquire with 4EP Gold</h3>
