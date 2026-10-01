@@ -186,20 +186,20 @@
     .river .f-emerald { left: 4140px; }
     .river .f-crimson { left: 4400px; }
 
-    /* Duo cards continue from left of slide 5 */
+    /* Duo cards continue from left of slide 5 — sit below the title */
     .river .duo {
-      top: 230px;
-      width: 220px;
-      height: 460px;
+      top: 320px;
+      width: 196px;
+      height: 420px;
       object-fit: cover;
       object-position: center 42%;
       border: 1px solid rgba(201,162,39,0.35);
     }
     .river .d1 { left: 4300px; }
-    .river .d2 { left: 4530px; }
-    .river .d3 { left: 4760px; }
-    .river .d4 { left: 4990px; }
-    .river .d5 { left: 5165px; opacity: 1; }
+    .river .d2 { left: 4508px; }
+    .river .d3 { left: 4716px; }
+    .river .d4 { left: 4924px; }
+    .river .d5 { left: 5132px; opacity: 1; }
 
     /* Continuous gold path line through middle */
     .flow-path {
@@ -233,6 +233,12 @@
     .p3 { left: calc(var(--w) * 2); }
     .p4 { left: calc(var(--w) * 3); }
     .p5 { left: calc(var(--w) * 4); }
+    .p5 .eyebrow,
+    .p5 .title {
+      position: relative;
+      z-index: 12;
+      text-shadow: 0 2px 18px rgba(7,7,8,0.85);
+    }
 
     .eyebrow {
       font-size: 18px;
@@ -429,21 +435,23 @@
       font-weight: 700;
     }
 
-    /* Slide 5 CTA */
+    /* Slide 5 CTA — clear of Duo cards and finish spillover */
     .cta-box {
       position: absolute;
       left: 64px;
       right: 64px;
       bottom: 170px;
+      z-index: 14;
       border: 1.5px solid rgba(201,162,39,0.8);
       background:
-        linear-gradient(165deg, rgba(201,162,39,0.14), transparent 55%),
-        linear-gradient(165deg, #1c1a14, #12110e);
+        linear-gradient(165deg, rgba(201,162,39,0.18), rgba(7,7,8,0.92) 45%),
+        linear-gradient(165deg, #1c1a14, #0c0c0e);
       padding: 28px 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
     }
     .cta-box h3 {
       font-family: var(--display);
@@ -620,7 +628,6 @@
     <section class="panel p5">
       <p class="eyebrow">Signature Line</p>
       <h2 class="title">iPhone Duo</h2>
-      <p class="lede">Nobile Gold · Armor · Nobile Platinum · Helios · Aurelis</p>
       <div class="cta-box">
         <div>
           <h3>Enquire with 4EP Gold</h3>
