@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>4EP Gold — Instagram Carousel</title>
+  <title>4EP Gold — Seamless Instagram Flow</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
@@ -18,117 +18,480 @@
       --foil: linear-gradient(125deg, #7a6116 0%, #c9a227 28%, #f3e2a0 48%, #c9a227 68%, #97741c 100%);
       --display: "Cinzel", serif;
       --sans: "Montserrat", sans-serif;
+      --w: 1080px;
+      --h: 1350px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #111;
-      color: var(--white);
-      font-family: var(--sans);
-      display: flex;
-      gap: 24px;
-      padding: 24px;
-      overflow-x: auto;
-    }
-    .slide {
-      position: relative;
-      width: 1080px;
-      height: 1350px;
-      flex: 0 0 auto;
+    html, body {
+      background: #000;
+      width: calc(var(--w) * 5);
+      height: var(--h);
       overflow: hidden;
-      background:
-        radial-gradient(ellipse 90% 55% at 80% 20%, rgba(201,162,39,0.16), transparent 55%),
-        radial-gradient(ellipse 70% 50% at 10% 90%, rgba(201,162,39,0.08), transparent 50%),
-        linear-gradient(180deg, #0b0b0d 0%, #070708 55%, #0a0908 100%);
-      isolation: isolate;
+      font-family: var(--sans);
+      color: var(--white);
     }
-    /* Continuous join rail across all slides */
-    .rail-top, .rail-bot {
+
+    /* ONE continuous canvas — sliced into 5 Instagram panels */
+    .panorama {
+      position: relative;
+      width: calc(var(--w) * 5);
+      height: var(--h);
+      background:
+        radial-gradient(ellipse 40% 50% at 8% 40%, rgba(201,162,39,0.18), transparent 55%),
+        radial-gradient(ellipse 35% 45% at 30% 70%, rgba(201,162,39,0.08), transparent 50%),
+        radial-gradient(ellipse 35% 45% at 52% 35%, rgba(201,162,39,0.12), transparent 55%),
+        radial-gradient(ellipse 35% 45% at 74% 65%, rgba(201,162,39,0.1), transparent 50%),
+        radial-gradient(ellipse 40% 50% at 94% 40%, rgba(201,162,39,0.16), transparent 55%),
+        linear-gradient(180deg, #0c0c0e 0%, #070708 50%, #0a0908 100%);
+      overflow: hidden;
+    }
+
+    /* Continuous rails that span all 5 panels */
+    .rail {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        var(--gold) 4%,
+        var(--gold-soft) 20%,
+        var(--gold) 40%,
+        var(--gold-soft) 60%,
+        var(--gold) 80%,
+        var(--gold-soft) 96%,
+        transparent 100%);
+      z-index: 20;
+    }
+    .rail.top { top: 110px; }
+    .rail.bot { bottom: 110px; }
+
+    /* Continuous thin frame top/bottom spanning full width */
+    .band {
       position: absolute;
       left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), var(--gold-soft), var(--gold), transparent);
-      opacity: 0.85;
-      z-index: 5;
-    }
-    .rail-top { top: 118px; }
-    .rail-bot { bottom: 118px; }
-    .edge-join {
-      position: absolute;
-      top: 118px;
-      bottom: 118px;
-      width: 18px;
-      z-index: 4;
-      pointer-events: none;
-    }
-    .edge-join.left {
-      left: 0;
-      background: linear-gradient(90deg, rgba(201,162,39,0.22), transparent);
-    }
-    .edge-join.right {
-      right: 0;
-      background: linear-gradient(270deg, rgba(201,162,39,0.22), transparent);
-    }
-    .frame {
-      position: absolute;
-      inset: 48px;
-      border: 1px solid rgba(201,162,39,0.45);
-      pointer-events: none;
-      z-index: 6;
-    }
-    .frame::before, .frame::after {
-      content: "";
-      position: absolute;
-      width: 28px;
-      height: 28px;
-      border: 1.5px solid var(--gold-soft);
-    }
-    .frame::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
-    .frame::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
-
-    .head {
-      position: absolute;
-      top: 64px;
-      left: 80px;
-      right: 80px;
-      z-index: 7;
+      height: 48px;
+      z-index: 18;
       display: flex;
       align-items: center;
+    }
+    .band.top {
+      top: 0;
+      border-bottom: 1px solid rgba(201,162,39,0.35);
+      background: linear-gradient(180deg, rgba(7,7,8,0.9), transparent);
+      padding: 0 56px;
       justify-content: space-between;
     }
-    .head img { height: 52px; width: auto; display: block; }
-    .head .mark {
-      font-size: 18px;
-      letter-spacing: 0.28em;
+    .band.bot {
+      bottom: 0;
+      border-top: 1px solid rgba(201,162,39,0.35);
+      background: linear-gradient(0deg, rgba(7,7,8,0.95), transparent);
+      padding: 0 56px;
+    }
+    .brand-row {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-row img { height: 36px; width: auto; }
+    .brand-row span {
+      font-size: 15px;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--gold-soft);
       font-weight: 600;
     }
 
-    .foot {
+    /* Continuous product river — images that STRADDLE panel edges */
+    .river {
       position: absolute;
-      left: 80px;
-      right: 80px;
-      bottom: 58px;
-      z-index: 7;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .river img {
+      position: absolute;
+      object-fit: cover;
+      opacity: 0.95;
+    }
+
+    /* Huge continuous hero phone spanning slides 1→2 */
+    /* Hero phone cut mid-frame at x=1080 so swipe 1→2 continues the photo */
+    .river .hero-phone {
+      left: 420px;
+      top: 40px;
+      width: 1220px;
+      height: 1280px;
+      object-fit: cover;
+      object-position: 52% 16%;
+      opacity: 0.78;
+      filter: brightness(0.92) saturate(1.05);
+    }
+
+    /* Leather + fan cut across x=2160 */
+    .river .leather {
+      left: 1720px;
+      top: 360px;
+      width: 860px;
+      height: 860px;
+      object-fit: contain;
+      filter: drop-shadow(0 30px 50px rgba(0,0,0,0.55));
+      opacity: 1;
+    }
+    .river .fan {
+      left: 1980px;
+      top: 540px;
+      width: 700px;
+      height: 720px;
+      object-fit: contain;
+      filter: drop-shadow(0 24px 40px rgba(0,0,0,0.5));
+    }
+
+    /* 18 Pro pair cut across x=3240 */
+    .river .pro18 {
+      left: 2640px;
+      top: 240px;
+      width: 620px;
+      height: 820px;
+      object-fit: cover;
+      object-position: center 25%;
+      border: 1px solid rgba(201,162,39,0.35);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+    }
+    .river .promax18 {
+      left: 2920px;
+      top: 320px;
+      width: 620px;
+      height: 820px;
+      object-fit: cover;
+      object-position: center 30%;
+      border: 1px solid rgba(201,162,39,0.35);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+    }
+
+    /* Finishes cut across x=4320 into Duo */
+    .river .finish {
+      top: 840px;
+      width: 320px;
+      height: 380px;
+      object-fit: cover;
+      object-position: center 18%;
+      border: 1px solid rgba(201,162,39,0.4);
+    }
+    .river .f-rose { left: 3880px; }
+    .river .f-emerald { left: 4140px; }
+    .river .f-crimson { left: 4400px; }
+
+    /* Duo cards continue from left of slide 5 */
+    .river .duo {
+      top: 230px;
+      width: 220px;
+      height: 460px;
+      object-fit: cover;
+      object-position: center 42%;
+      border: 1px solid rgba(201,162,39,0.35);
+    }
+    .river .d1 { left: 4300px; }
+    .river .d2 { left: 4530px; }
+    .river .d3 { left: 4760px; }
+    .river .d4 { left: 4990px; }
+    .river .d5 { left: 5165px; opacity: 1; }
+
+    /* Continuous gold path line through middle */
+    .flow-path {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent,
+        rgba(201,162,39,0.35) 8%,
+        rgba(220,197,111,0.55) 25%,
+        rgba(201,162,39,0.35) 50%,
+        rgba(220,197,111,0.55) 75%,
+        rgba(201,162,39,0.35) 92%,
+        transparent);
+      z-index: 2;
+    }
+
+    /* Panel content overlays — text positioned per panel but designed to feel continuous */
+    .panel {
+      position: absolute;
+      top: 0;
+      width: var(--w);
+      height: var(--h);
+      z-index: 10;
+      padding: 150px 64px 150px;
+    }
+    .p1 { left: 0; }
+    .p2 { left: calc(var(--w) * 1); }
+    .p3 { left: calc(var(--w) * 2); }
+    .p4 { left: calc(var(--w) * 3); }
+    .p5 { left: calc(var(--w) * 4); }
+
+    .eyebrow {
+      font-size: 18px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .title {
+      font-family: var(--display);
+      font-size: 58px;
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+      margin-bottom: 20px;
+      max-width: 620px;
+    }
+    .lede {
+      font-size: 24px;
+      line-height: 1.45;
+      color: #d8d8de;
+      font-weight: 500;
+      max-width: 520px;
+    }
+
+    /* Slide 1 cover copy — left, phone continues into slide 2 */
+    .p1 .cover-block {
+      position: absolute;
+      left: 64px;
+      bottom: 180px;
+      max-width: 540px;
+      z-index: 12;
+    }
+    .p1 .cover-block .logo { width: 240px; margin-bottom: 22px; }
+    .p1 .cover-block .tag {
+      font-family: var(--display);
+      font-size: 30px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      background: var(--foil);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 600;
+    }
+    .p1 .cover-block .sub {
+      font-size: 20px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .p1 .cover-block p {
+      font-size: 24px;
+      line-height: 1.5;
+      color: #e8e7e2;
+      font-weight: 500;
+    }
+
+    /* Slide 2 pricing — left, images continue from left edge */
+    .price-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 28px;
+      margin-top: 24px;
+      max-width: 920px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(7,7,8,0.55);
+      backdrop-filter: blur(2px);
+      padding: 0 8px;
+    }
+    .price-item {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(43,43,48,0.9);
+    }
+    .price-item:nth-child(3),
+    .price-item:nth-child(4) { border-bottom: 0; }
+    .price-item h3 {
+      font-family: var(--display);
+      font-size: 24px;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .price-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      color: #cfcfd4;
+      font-weight: 500;
+      padding: 4px 0;
+    }
+    .price-line strong {
+      font-family: var(--display);
+      color: var(--gold-soft);
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    /* Slide 3 featured */
+    .p3 .watch-chip {
+      margin-top: 28px;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 18px;
+      padding: 18px 22px;
+      border: 1px solid rgba(201,162,39,0.55);
+      background: rgba(16,16,18,0.72);
+    }
+    .p3 .watch-chip .lbl {
+      font-size: 16px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .p3 .watch-chip .amt {
+      font-family: var(--display);
+      font-size: 34px;
+      color: var(--gold-soft);
+      font-weight: 700;
+    }
+
+    /* Slide 4 bespoke */
+    .list { margin-top: 16px; border-top: 1px solid var(--line); max-width: 480px; }
+    .list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 22px;
+      font-weight: 500;
+    }
+    .list li::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .quote {
+      position: absolute;
+      right: 64px;
+      top: 280px;
+      width: 360px;
+      border: 1.5px solid rgba(201,162,39,0.8);
+      background:
+        linear-gradient(165deg, rgba(201,162,39,0.14), transparent 55%),
+        linear-gradient(165deg, #1c1a14, #12110e);
+      padding: 28px 26px;
+    }
+    .quote h3 {
+      font-family: var(--display);
+      font-size: 24px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-weight: 700;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(201,162,39,0.45);
+    }
+    .quote p { font-size: 20px; line-height: 1.45; font-weight: 600; }
+    .quote strong { color: var(--gold-soft); }
+    .color-note {
+      position: absolute;
+      left: 64px;
+      right: 64px;
+      bottom: 170px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(7,7,8,0.5);
+    }
+    .color-note span {
+      font-size: 16px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .color-note strong {
+      font-family: var(--display);
+      font-size: 28px;
+      color: var(--gold-soft);
+      font-weight: 700;
+    }
+
+    /* Slide 5 CTA */
+    .cta-box {
+      position: absolute;
+      left: 64px;
+      right: 64px;
+      bottom: 170px;
+      border: 1.5px solid rgba(201,162,39,0.8);
+      background:
+        linear-gradient(165deg, rgba(201,162,39,0.14), transparent 55%),
+        linear-gradient(165deg, #1c1a14, #12110e);
+      padding: 28px 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
     }
-    .dots {
+    .cta-box h3 {
+      font-family: var(--display);
+      font-size: 32px;
+      letter-spacing: 0.06em;
+      color: var(--gold-soft);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .cta-box p { font-size: 20px; color: #d6d6db; font-weight: 500; }
+    .cta-pill {
+      flex-shrink: 0;
+      background: var(--gold);
+      color: var(--ink);
+      font-size: 16px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 18px 22px;
+    }
+
+    /* Continuous footer counters — one strip, each panel shows its segment */
+    .foot-strip {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 42px;
+      height: 40px;
+      z-index: 22;
+      display: grid;
+      grid-template-columns: repeat(5, var(--w));
+    }
+    .foot-cell {
       display: flex;
-      gap: 10px;
       align-items: center;
+      justify-content: space-between;
+      padding: 0 64px;
     }
+    .dots { display: flex; gap: 8px; align-items: center; }
     .dots i {
-      width: 28px;
+      width: 26px;
       height: 4px;
-      background: rgba(245,244,241,0.22);
+      background: rgba(245,244,241,0.2);
       display: block;
     }
-    .dots i.on { background: var(--gold); width: 48px; }
+    .dots i.on { width: 46px; background: var(--gold); }
     .swipe {
-      font-size: 16px;
+      font-size: 15px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--mute);
@@ -136,438 +499,68 @@
     }
     .count {
       font-family: var(--display);
-      font-size: 20px;
+      font-size: 18px;
       letter-spacing: 0.12em;
       color: var(--gold-soft);
     }
 
-    .pad {
+    /* Soft vignette per panel edge to help join feel without hard cuts */
+    .seam {
       position: absolute;
-      inset: 150px 80px 160px;
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
+      top: 110px;
+      bottom: 110px;
+      width: 80px;
+      z-index: 8;
+      pointer-events: none;
     }
-    .eyebrow {
-      font-size: 20px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 18px;
-    }
-    .title {
-      font-family: var(--display);
-      font-size: 64px;
-      line-height: 1.05;
-      letter-spacing: 0.04em;
-      font-weight: 600;
-      margin-bottom: 22px;
-    }
-    .lede {
-      font-size: 26px;
-      line-height: 1.45;
-      color: #d8d8de;
-      font-weight: 500;
-      max-width: 820px;
-    }
-
-    /* SLIDE 1 */
-    .s1-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .s1-bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 70% 25%;
-      filter: brightness(0.55) saturate(1.05);
-    }
-    .s1-bg::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(7,7,8,0.92) 0%, rgba(7,7,8,0.55) 48%, rgba(7,7,8,0.25) 100%),
-        linear-gradient(180deg, rgba(7,7,8,0.35) 0%, transparent 30%, rgba(7,7,8,0.75) 100%);
-    }
-    .s1-copy {
-      position: absolute;
-      left: 80px;
-      right: 80px;
-      bottom: 190px;
-      z-index: 4;
-    }
-    .s1-copy .logo {
-      width: 280px;
-      margin-bottom: 28px;
-    }
-    .s1-copy .tag {
-      font-family: var(--display);
-      font-size: 34px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-      background: var(--foil);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-weight: 600;
-    }
-    .s1-copy .sub {
-      font-size: 22px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold-soft);
-      font-weight: 600;
-      margin-bottom: 22px;
-    }
-    .s1-copy p {
-      font-size: 26px;
-      line-height: 1.5;
-      color: #e8e7e2;
-      font-weight: 500;
-      max-width: 620px;
-    }
-
-    /* SLIDE 2 */
-    .price-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 36px;
-      margin-top: 28px;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-    .price-item {
-      padding: 26px 0;
-      border-bottom: 1px solid rgba(43,43,48,0.9);
-    }
-    .price-item:nth-child(3),
-    .price-item:nth-child(4) { border-bottom: 0; }
-    .price-item h3 {
-      font-family: var(--display);
-      font-size: 28px;
-      letter-spacing: 0.08em;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .price-line {
-      display: flex;
-      justify-content: space-between;
-      font-size: 22px;
-      color: #cfcfd4;
-      font-weight: 500;
-      padding: 6px 0;
-    }
-    .price-line strong {
-      font-family: var(--display);
-      color: var(--gold-soft);
-      font-weight: 700;
-      font-size: 24px;
-    }
-    .duo-thumbs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: auto;
-      height: 380px;
-    }
-    .duo-thumbs figure {
-      border: 1px solid var(--line);
-      overflow: hidden;
-      background: var(--panel);
-      height: 100%;
-    }
-    .duo-thumbs img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-      background:
-        radial-gradient(ellipse 70% 55% at 50% 55%, rgba(201,162,39,0.12), transparent 65%),
-        var(--panel);
-    }
-
-    /* SLIDE 3 */
-    .model-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      flex: 1;
-      min-height: 0;
-      margin-top: 18px;
-    }
-    .model-grid figure {
-      border: 1px solid var(--line);
-      overflow: hidden;
-      background: var(--panel);
-      min-height: 0;
-    }
-    .model-grid img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 30%;
-    }
-    .watch-bar {
-      margin-top: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding-top: 22px;
-      border-top: 1px solid var(--line);
-    }
-    .watch-bar .label {
-      font-size: 18px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .watch-bar .price {
-      font-family: var(--display);
-      font-size: 42px;
-      background: var(--foil);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-weight: 600;
-    }
-    .watch-bar img {
-      width: 220px;
-      height: 160px;
-      object-fit: contain;
-      filter: drop-shadow(0 12px 20px rgba(0,0,0,0.45));
-    }
-
-    /* SLIDE 4 */
-    .bespoke-row {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
-      margin-top: 10px;
-    }
-    .list { border-top: 1px solid var(--line); margin-top: 18px; }
-    .list li {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 24px;
-      font-weight: 500;
-    }
-    .list li::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      background: var(--gold);
-      transform: rotate(45deg);
-      flex-shrink: 0;
-    }
-    .quote {
-      border: 1.5px solid rgba(201,162,39,0.8);
-      background:
-        linear-gradient(165deg, rgba(201,162,39,0.14), transparent 55%),
-        linear-gradient(165deg, #1c1a14, #12110e);
-      padding: 36px 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 18px;
-    }
-    .quote h3 {
-      font-family: var(--display);
-      font-size: 28px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold-soft);
-      font-weight: 700;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(201,162,39,0.45);
-    }
-    .quote p {
-      font-size: 24px;
-      line-height: 1.5;
-      font-weight: 600;
-    }
-    .quote strong { color: var(--gold-soft); }
-    .finishes {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-      margin-top: auto;
-      height: 340px;
-    }
-    .finishes figure {
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
-      height: 100%;
-    }
-    .finishes .shot {
-      flex: 1;
-      min-height: 0;
-      border: 1px solid var(--line);
-      overflow: hidden;
-      background: var(--panel);
-    }
-    .finishes img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 18%;
-    }
-    .finishes figcaption {
-      margin-top: 12px;
-      text-align: center;
-      font-size: 16px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold-soft);
-      font-weight: 600;
-    }
-    .color-note {
-      margin-top: 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 16px;
-      padding: 18px 0;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-    .color-note span {
-      font-size: 18px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-    .color-note strong {
-      font-family: var(--display);
-      font-size: 32px;
-      color: var(--gold-soft);
-      font-weight: 700;
-    }
-
-    /* SLIDE 5 */
-    .duo-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      margin-top: 22px;
-      height: 420px;
-    }
-    .duo-grid figure {
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
-      height: 100%;
-    }
-    .duo-grid .shot {
-      flex: 1;
-      min-height: 0;
-      border: 1px solid var(--line);
-      overflow: hidden;
-      background: var(--panel);
-    }
-    .duo-grid img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 42%;
-    }
-    .duo-grid figcaption {
-      margin-top: 10px;
-      text-align: center;
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold-soft);
-      font-weight: 600;
-    }
-    .cta-box {
-      margin-top: auto;
-      border: 1.5px solid rgba(201,162,39,0.8);
-      background:
-        linear-gradient(165deg, rgba(201,162,39,0.14), transparent 55%),
-        linear-gradient(165deg, #1c1a14, #12110e);
-      padding: 34px 36px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .cta-box h3 {
-      font-family: var(--display);
-      font-size: 36px;
-      letter-spacing: 0.08em;
-      color: var(--gold-soft);
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    .cta-box p {
-      font-size: 22px;
-      color: #d6d6db;
-      font-weight: 500;
-      line-height: 1.4;
-    }
-    .cta-pill {
-      flex-shrink: 0;
-      background: var(--gold);
-      color: var(--ink);
-      font-size: 18px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 700;
-      padding: 22px 28px;
-    }
+    .seam { display: none !important; }
   </style>
 </head>
 <body>
-  <!-- SLIDE 1 -->
-  <section class="slide" data-slide="1">
-    <div class="s1-bg"><img src="../images/gold-iphone.jpg" alt=""></div>
-    <div class="frame"></div>
-    <div class="rail-top"></div>
-    <div class="rail-bot"></div>
-    <div class="edge-join right"></div>
-    <header class="head">
-      <img src="../images/logo.png" alt="4EP Gold">
-      <span class="mark">Luxury Catalog</span>
-    </header>
-    <div class="s1-copy">
-      <img class="logo" src="../images/logo.png" alt="4EP Gold">
-      <p class="tag">Technology, Elevated.</p>
-      <p class="sub">24K Gold-Plated Collection</p>
-      <p>Discover a refined expression of technology, crafted for exclusivity, precision and distinction.</p>
+  <div class="panorama" id="panorama">
+    <div class="band top">
+      <div class="brand-row">
+        <img src="../images/logo.png" alt="4EP Gold">
+        <span>4EP Gold · Technology, Elevated · Swipe to explore</span>
+        <img src="../images/logo.png" alt="" style="opacity:0">
+      </div>
     </div>
-    <footer class="foot">
-      <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
-      <span class="swipe">Swipe →</span>
-      <span class="count">01 / 05</span>
-    </footer>
-  </section>
 
-  <!-- SLIDE 2 -->
-  <section class="slide" data-slide="2">
-    <div class="frame"></div>
-    <div class="rail-top"></div>
-    <div class="rail-bot"></div>
-    <div class="edge-join left"></div>
-    <div class="edge-join right"></div>
-    <header class="head">
-      <img src="../images/logo.png" alt="4EP Gold">
-      <span class="mark">Collection</span>
-    </header>
-    <div class="pad">
+    <div class="rail top"></div>
+    <div class="rail bot"></div>
+    <div class="flow-path"></div>
+
+    <div class="river">
+      <img class="hero-phone" src="../images/gold-iphone.jpg" alt="">
+      <img class="leather" src="../images/cutouts/leather-duo-cutout.png" alt="">
+      <img class="fan" src="../images/cutouts/collection-fan-cutout.png" alt="">
+      <img class="pro18" src="../images/cutouts/iphone-18-pro-grid.jpg" alt="">
+      <img class="promax18" src="../images/cutouts/iphone-18-pro-max-grid.jpg" alt="">
+      <img class="finish f-rose" src="../images/rose-engraved.jpg" alt="">
+      <img class="finish f-emerald" src="../images/emerald-engraved.jpg" alt="">
+      <img class="finish f-crimson" src="../images/crimson-engraved.jpg" alt="">
+      <img class="duo d1" src="../images/duo-nobile-gold.jpg" alt="">
+      <img class="duo d2" src="../images/duo-armor.jpg" alt="">
+      <img class="duo d3" src="../images/duo-nobile-platinum.jpg" alt="">
+      <img class="duo d4" src="../images/duo-helios.jpg" alt="">
+      <img class="duo d5" src="../images/duo-aurelis.jpg" alt="">
+    </div>
+
+    <!-- PANEL 1 -->
+    <section class="panel p1">
+      <div class="cover-block">
+        <img class="logo" src="../images/logo.png" alt="4EP Gold">
+        <p class="tag">Technology, Elevated.</p>
+        <p class="sub">24K Gold-Plated Collection</p>
+        <p>Discover a refined expression of technology, crafted for exclusivity, precision and distinction.</p>
+      </div>
+    </section>
+
+    <!-- PANEL 2 -->
+    <section class="panel p2">
       <p class="eyebrow">Collection</p>
-      <h2 class="title">4EP Gold<br>iPhone Collection</h2>
+      <h2 class="title">iPhone<br>Collection</h2>
+      <p class="lede">Starting prices across the 17 &amp; 18 Pro lineup.</p>
       <div class="price-grid">
         <article class="price-item">
           <h3>iPhone 17 Pro</h3>
@@ -590,156 +583,80 @@
           <div class="price-line"><span>1TB</span><strong>From $6,300</strong></div>
         </article>
       </div>
-      <div class="duo-thumbs">
-        <figure><img src="../images/cutouts/leather-duo-cutout.png" alt=""></figure>
-        <figure><img src="../images/cutouts/collection-fan-cutout.png" alt=""></figure>
-      </div>
-    </div>
-    <footer class="foot">
-      <div class="dots"><i></i><i class="on"></i><i></i><i></i><i></i></div>
-      <span class="swipe">Swipe →</span>
-      <span class="count">02 / 05</span>
-    </footer>
-  </section>
+    </section>
 
-  <!-- SLIDE 3 -->
-  <section class="slide" data-slide="3">
-    <div class="frame"></div>
-    <div class="rail-top"></div>
-    <div class="rail-bot"></div>
-    <div class="edge-join left"></div>
-    <div class="edge-join right"></div>
-    <header class="head">
-      <img src="../images/logo.png" alt="4EP Gold">
-      <span class="mark">Signature Models</span>
-    </header>
-    <div class="pad">
+    <!-- PANEL 3 -->
+    <section class="panel p3">
       <p class="eyebrow">Featured</p>
-      <h2 class="title">iPhone 18 Pro<br>&amp; Pro Max</h2>
-      <p class="lede">24K gold limited editions — from $5,500.</p>
-      <div class="model-grid">
-        <figure><img src="../images/cutouts/iphone-18-pro-grid.jpg" alt=""></figure>
-        <figure><img src="../images/cutouts/iphone-18-pro-max-grid.jpg" alt=""></figure>
+      <h2 class="title">18 Pro<br>&amp; Pro Max</h2>
+      <p class="lede">24K gold limited editions — from $5,500. Keep swiping for bespoke finishes.</p>
+      <div class="watch-chip">
+        <span class="lbl">Apple Watch</span>
+        <span class="amt">From $1,500</span>
       </div>
-      <div class="watch-bar">
-        <div>
-          <p class="label">Apple Watch Collection</p>
-          <p class="price">From $1,500</p>
-        </div>
-        <img src="../images/cutouts/gold-watch-cutout.png" alt="">
-      </div>
-    </div>
-    <footer class="foot">
-      <div class="dots"><i></i><i></i><i class="on"></i><i></i><i></i></div>
-      <span class="swipe">Swipe →</span>
-      <span class="count">03 / 05</span>
-    </footer>
-  </section>
+    </section>
 
-  <!-- SLIDE 4 -->
-  <section class="slide" data-slide="4">
-    <div class="frame"></div>
-    <div class="rail-top"></div>
-    <div class="rail-bot"></div>
-    <div class="edge-join left"></div>
-    <div class="edge-join right"></div>
-    <header class="head">
-      <img src="../images/logo.png" alt="4EP Gold">
-      <span class="mark">Atelier</span>
-    </header>
-    <div class="pad">
+    <!-- PANEL 4 -->
+    <section class="panel p4">
       <p class="eyebrow">Atelier</p>
       <h2 class="title">Bespoke<br>Customization</h2>
-      <div class="bespoke-row">
-        <div>
-          <p class="lede" style="font-size:22px;margin-bottom:8px;">Beyond the standard 24K gold-plated finish.</p>
-          <ul class="list">
-            <li>Pure Gold Engraving</li>
-            <li>Diamond Setting</li>
-            <li>Special Finishes</li>
-            <li>Bespoke Designs</li>
-          </ul>
-        </div>
-        <aside class="quote">
-          <h3>Custom Quotations</h3>
-          <p>Please contact <strong>4EP Gold</strong> for a personalized quotation.</p>
-        </aside>
-      </div>
-      <div class="finishes">
-        <figure>
-          <div class="shot"><img src="../images/rose-engraved.jpg" alt=""></div>
-          <figcaption>Rose</figcaption>
-        </figure>
-        <figure>
-          <div class="shot"><img src="../images/emerald-engraved.jpg" alt=""></div>
-          <figcaption>Emerald</figcaption>
-        </figure>
-        <figure>
-          <div class="shot"><img src="../images/crimson-engraved.jpg" alt=""></div>
-          <figcaption>Crimson</figcaption>
-        </figure>
-      </div>
+      <ul class="list">
+        <li>Pure Gold Engraving</li>
+        <li>Diamond Setting</li>
+        <li>Special Finishes</li>
+        <li>Bespoke Designs</li>
+      </ul>
+      <aside class="quote">
+        <h3>Custom Quotations</h3>
+        <p>Contact <strong>4EP Gold</strong> for a personalized quotation.</p>
+      </aside>
       <div class="color-note">
-        <span>Color finishes · Rose · Emerald · Crimson</span>
+        <span>Rose · Emerald · Crimson</span>
         <strong>From $3,500</strong>
       </div>
-    </div>
-    <footer class="foot">
-      <div class="dots"><i></i><i></i><i></i><i class="on"></i><i></i></div>
-      <span class="swipe">Swipe →</span>
-      <span class="count">04 / 05</span>
-    </footer>
-  </section>
+    </section>
 
-  <!-- SLIDE 5 -->
-  <section class="slide" data-slide="5">
-    <div class="frame"></div>
-    <div class="rail-top"></div>
-    <div class="rail-bot"></div>
-    <div class="edge-join left"></div>
-    <header class="head">
-      <img src="../images/logo.png" alt="4EP Gold">
-      <span class="mark">Signature Line</span>
-    </header>
-    <div class="pad">
+    <!-- PANEL 5 -->
+    <section class="panel p5">
       <p class="eyebrow">Signature Line</p>
       <h2 class="title">iPhone Duo</h2>
-      <p class="lede">Nobile Gold · Armor · Nobile Platinum · Helios · Aurelis — from $8,000.</p>
-      <div class="duo-grid">
-        <figure>
-          <div class="shot"><img src="../images/duo-nobile-gold.jpg" alt=""></div>
-          <figcaption>Nobile Gold</figcaption>
-        </figure>
-        <figure>
-          <div class="shot"><img src="../images/duo-armor.jpg" alt=""></div>
-          <figcaption>Armor</figcaption>
-        </figure>
-        <figure>
-          <div class="shot"><img src="../images/duo-nobile-platinum.jpg" alt=""></div>
-          <figcaption>Nobile Platinum</figcaption>
-        </figure>
-        <figure>
-          <div class="shot"><img src="../images/duo-helios.jpg" alt=""></div>
-          <figcaption>Helios</figcaption>
-        </figure>
-        <figure>
-          <div class="shot"><img src="../images/duo-aurelis.jpg" alt=""></div>
-          <figcaption>Aurelis</figcaption>
-        </figure>
-      </div>
+      <p class="lede">Nobile Gold · Armor · Nobile Platinum · Helios · Aurelis</p>
       <div class="cta-box">
         <div>
           <h3>Enquire with 4EP Gold</h3>
-          <p>512GB from $8,000 · 1TB $8,600 · 2TB $9,400</p>
+          <p>From $8,000 · 1TB $8,600 · 2TB $9,400</p>
         </div>
         <div class="cta-pill">Contact Us</div>
       </div>
+    </section>
+
+    <div class="foot-strip">
+      <div class="foot-cell">
+        <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+        <span class="swipe">Swipe →</span>
+        <span class="count">01 / 05</span>
+      </div>
+      <div class="foot-cell">
+        <div class="dots"><i></i><i class="on"></i><i></i><i></i><i></i></div>
+        <span class="swipe">Swipe →</span>
+        <span class="count">02 / 05</span>
+      </div>
+      <div class="foot-cell">
+        <div class="dots"><i></i><i></i><i class="on"></i><i></i><i></i></div>
+        <span class="swipe">Swipe →</span>
+        <span class="count">03 / 05</span>
+      </div>
+      <div class="foot-cell">
+        <div class="dots"><i></i><i></i><i></i><i class="on"></i><i></i></div>
+        <span class="swipe">Swipe →</span>
+        <span class="count">04 / 05</span>
+      </div>
+      <div class="foot-cell">
+        <div class="dots"><i></i><i></i><i></i><i></i><i class="on"></i></div>
+        <span class="swipe">Save &amp; Share</span>
+        <span class="count">05 / 05</span>
+      </div>
     </div>
-    <footer class="foot">
-      <div class="dots"><i></i><i></i><i></i><i></i><i class="on"></i></div>
-      <span class="swipe">Save &amp; Share</span>
-      <span class="count">05 / 05</span>
-    </footer>
-  </section>
+  </div>
 </body>
 </html>
