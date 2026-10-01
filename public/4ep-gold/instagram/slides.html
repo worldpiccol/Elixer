@@ -173,26 +173,13 @@
       box-shadow: 0 30px 60px rgba(0,0,0,0.45);
     }
 
-    /* Finishes cut across x=4320 into Duo */
-    .river .finish {
-      top: 840px;
-      width: 320px;
-      height: 380px;
-      object-fit: cover;
-      object-position: center 18%;
-      border: 1px solid rgba(201,162,39,0.4);
-    }
-    .river .f-rose { left: 3880px; }
-    .river .f-emerald { left: 4140px; }
-    .river .f-crimson { left: 4400px; }
-
-    /* Duo cards continue from left of slide 5 */
+    /* Duo cards continue from left of slide 5 — below title block */
     .river .duo {
-      top: 230px;
+      top: 420px;
       width: 220px;
-      height: 460px;
+      height: 420px;
       object-fit: cover;
-      object-position: center 42%;
+      object-position: center 35%;
       border: 1px solid rgba(201,162,39,0.35);
     }
     .river .d1 { left: 4300px; }
@@ -200,6 +187,19 @@
     .river .d3 { left: 4760px; }
     .river .d4 { left: 4990px; }
     .river .d5 { left: 5165px; opacity: 1; }
+
+    /* Finishes stay lower so they don't fight Duo titles */
+    .river .finish {
+      top: 880px;
+      width: 280px;
+      height: 300px;
+      object-fit: cover;
+      object-position: center 18%;
+      border: 1px solid rgba(201,162,39,0.4);
+    }
+    .river .f-rose { left: 3880px; }
+    .river .f-emerald { left: 4140px; }
+    .river .f-crimson { left: 4380px; }
 
     /* Continuous gold path line through middle */
     .flow-path {
@@ -216,7 +216,7 @@
         rgba(220,197,111,0.55) 75%,
         rgba(201,162,39,0.35) 92%,
         transparent);
-      z-index: 2;
+      z-index: 0;
     }
 
     /* Panel content overlays — text positioned per panel but designed to feel continuous */
@@ -539,11 +539,11 @@
       <img class="finish f-rose" src="../images/rose-engraved.jpg" alt="">
       <img class="finish f-emerald" src="../images/emerald-engraved.jpg" alt="">
       <img class="finish f-crimson" src="../images/crimson-engraved.jpg" alt="">
-      <img class="duo d1" src="../images/duo-nobile-gold.jpg" alt="">
-      <img class="duo d2" src="../images/duo-armor.jpg" alt="">
-      <img class="duo d3" src="../images/duo-nobile-platinum.jpg" alt="">
-      <img class="duo d4" src="../images/duo-helios.jpg" alt="">
-      <img class="duo d5" src="../images/duo-aurelis.jpg" alt="">
+      <img class="duo d1" src="../images/cutouts/duo-nobile-gold-phone.jpg" alt="">
+      <img class="duo d2" src="../images/cutouts/duo-armor-phone.jpg" alt="">
+      <img class="duo d3" src="../images/cutouts/duo-nobile-platinum-phone.jpg" alt="">
+      <img class="duo d4" src="../images/cutouts/duo-helios-phone.jpg" alt="">
+      <img class="duo d5" src="../images/cutouts/duo-aurelis-phone.jpg" alt="">
     </div>
 
     <!-- PANEL 1 -->
@@ -620,7 +620,7 @@
     <section class="panel p5">
       <p class="eyebrow">Signature Line</p>
       <h2 class="title">iPhone Duo</h2>
-      <p class="lede">Nobile Gold · Armor · Nobile Platinum · Helios · Aurelis</p>
+      <p class="lede">Five signature finishes — from $8,000.</p>
       <div class="cta-box">
         <div>
           <h3>Enquire with 4EP Gold</h3>
