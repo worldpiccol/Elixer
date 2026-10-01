@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>4EP Gold — Instagram Carousel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #070708;
+      --panel: #101012;
+      --line: #2b2b30;
+      --white: #f5f4f1;
+      --mute: #b8b8be;
+      --gold: #c9a227;
+      --gold-soft: #dcc56f;
+      --foil: linear-gradient(125deg, #7a6116 0%, #c9a227 28%, #f3e2a0 48%, #c9a227 68%, #97741c 100%);
+      --display: "Cinzel", serif;
+      --sans: "Montserrat", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #111;
+      color: var(--white);
+      font-family: var(--sans);
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      overflow-x: auto;
+    }
+    .slide {
+      position: relative;
+      width: 1080px;
+      height: 1350px;
+      flex: 0 0 auto;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 90% 55% at 80% 20%, rgba(201,162,39,0.16), transparent 55%),
+        radial-gradient(ellipse 70% 50% at 10% 90%, rgba(201,162,39,0.08), transparent 50%),
+        linear-gradient(180deg, #0b0b0d 0%, #070708 55%, #0a0908 100%);
+      isolation: isolate;
+    }
+    /* Continuous join rail across all slides */
+    .rail-top, .rail-bot {
+      position: absolute;
+      left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--gold-soft), var(--gold), transparent);
+      opacity: 0.85;
+      z-index: 5;
+    }
+    .rail-top { top: 118px; }
+    .rail-bot { bottom: 118px; }
+    .edge-join {
+      position: absolute;
+      top: 118px;
+      bottom: 118px;
+      width: 18px;
+      z-index: 4;
+      pointer-events: none;
+    }
+    .edge-join.left {
+      left: 0;
+      background: linear-gradient(90deg, rgba(201,162,39,0.22), transparent);
+    }
+    .edge-join.right {
+      right: 0;
+      background: linear-gradient(270deg, rgba(201,162,39,0.22), transparent);
+    }
+    .frame {
+      position: absolute;
+      inset: 48px;
+      border: 1px solid rgba(201,162,39,0.45);
+      pointer-events: none;
+      z-index: 6;
+    }
+    .frame::before, .frame::after {
+      content: "";
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border: 1.5px solid var(--gold-soft);
+    }
+    .frame::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+    .frame::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+    .head {
+      position: absolute;
+      top: 64px;
+      left: 80px;
+      right: 80px;
+      z-index: 7;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .head img { height: 52px; width: auto; display: block; }
+    .head .mark {
+      font-size: 18px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-weight: 600;
+    }
+
+    .foot {
+      position: absolute;
+      left: 80px;
+      right: 80px;
+      bottom: 58px;
+      z-index: 7;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .dots {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .dots i {
+      width: 28px;
+      height: 4px;
+      background: rgba(245,244,241,0.22);
+      display: block;
+    }
+    .dots i.on { background: var(--gold); width: 48px; }
+    .swipe {
+      font-size: 16px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mute);
+      font-weight: 600;
+    }
+    .count {
+      font-family: var(--display);
+      font-size: 20px;
+      letter-spacing: 0.12em;
+      color: var(--gold-soft);
+    }
+
+    .pad {
+      position: absolute;
+      inset: 150px 80px 160px;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+    }
+    .eyebrow {
+      font-size: 20px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .title {
+      font-family: var(--display);
+      font-size: 64px;
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+    .lede {
+      font-size: 26px;
+      line-height: 1.45;
+      color: #d8d8de;
+      font-weight: 500;
+      max-width: 820px;
+    }
+
+    /* SLIDE 1 */
+    .s1-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .s1-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 70% 25%;
+      filter: brightness(0.55) saturate(1.05);
+    }
+    .s1-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(7,7,8,0.92) 0%, rgba(7,7,8,0.55) 48%, rgba(7,7,8,0.25) 100%),
+        linear-gradient(180deg, rgba(7,7,8,0.35) 0%, transparent 30%, rgba(7,7,8,0.75) 100%);
+    }
+    .s1-copy {
+      position: absolute;
+      left: 80px;
+      right: 80px;
+      bottom: 190px;
+      z-index: 4;
+    }
+    .s1-copy .logo {
+      width: 280px;
+      margin-bottom: 28px;
+    }
+    .s1-copy .tag {
+      font-family: var(--display);
+      font-size: 34px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      background: var(--foil);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 600;
+    }
+    .s1-copy .sub {
+      font-size: 22px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+    .s1-copy p {
+      font-size: 26px;
+      line-height: 1.5;
+      color: #e8e7e2;
+      font-weight: 500;
+      max-width: 620px;
+    }
+
+    /* SLIDE 2 */
+    .price-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 36px;
+      margin-top: 28px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .price-item {
+      padding: 26px 0;
+      border-bottom: 1px solid rgba(43,43,48,0.9);
+    }
+    .price-item:nth-child(3),
+    .price-item:nth-child(4) { border-bottom: 0; }
+    .price-item h3 {
+      font-family: var(--display);
+      font-size: 28px;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .price-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 22px;
+      color: #cfcfd4;
+      font-weight: 500;
+      padding: 6px 0;
+    }
+    .price-line strong {
+      font-family: var(--display);
+      color: var(--gold-soft);
+      font-weight: 700;
+      font-size: 24px;
+    }
+    .duo-thumbs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: auto;
+      height: 380px;
+    }
+    .duo-thumbs figure {
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: var(--panel);
+      height: 100%;
+    }
+    .duo-thumbs img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 55%, rgba(201,162,39,0.12), transparent 65%),
+        var(--panel);
+    }
+
+    /* SLIDE 3 */
+    .model-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      flex: 1;
+      min-height: 0;
+      margin-top: 18px;
+    }
+    .model-grid figure {
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: var(--panel);
+      min-height: 0;
+    }
+    .model-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+    .watch-bar {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+    .watch-bar .label {
+      font-size: 18px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .watch-bar .price {
+      font-family: var(--display);
+      font-size: 42px;
+      background: var(--foil);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 600;
+    }
+    .watch-bar img {
+      width: 220px;
+      height: 160px;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 20px rgba(0,0,0,0.45));
+    }
+
+    /* SLIDE 4 */
+    .bespoke-row {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      margin-top: 10px;
+    }
+    .list { border-top: 1px solid var(--line); margin-top: 18px; }
+    .list li {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 24px;
+      font-weight: 500;
+    }
+    .list li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .quote {
+      border: 1.5px solid rgba(201,162,39,0.8);
+      background:
+        linear-gradient(165deg, rgba(201,162,39,0.14), transparent 55%),
+        linear-gradient(165deg, #1c1a14, #12110e);
+      padding: 36px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+    }
+    .quote h3 {
+      font-family: var(--display);
+      font-size: 28px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-weight: 700;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(201,162,39,0.45);
+    }
+    .quote p {
+      font-size: 24px;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+    .quote strong { color: var(--gold-soft); }
+    .finishes {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: auto;
+      height: 340px;
+    }
+    .finishes figure {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+    }
+    .finishes .shot {
+      flex: 1;
+      min-height: 0;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: var(--panel);
+    }
+    .finishes img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+    }
+    .finishes figcaption {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 16px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-weight: 600;
+    }
+    .color-note {
+      margin-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .color-note span {
+      font-size: 18px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .color-note strong {
+      font-family: var(--display);
+      font-size: 32px;
+      color: var(--gold-soft);
+      font-weight: 700;
+    }
+
+    /* SLIDE 5 */
+    .duo-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+      height: 420px;
+    }
+    .duo-grid figure {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+    }
+    .duo-grid .shot {
+      flex: 1;
+      min-height: 0;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: var(--panel);
+    }
+    .duo-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 42%;
+    }
+    .duo-grid figcaption {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      font-weight: 600;
+    }
+    .cta-box {
+      margin-top: auto;
+      border: 1.5px solid rgba(201,162,39,0.8);
+      background:
+        linear-gradient(165deg, rgba(201,162,39,0.14), transparent 55%),
+        linear-gradient(165deg, #1c1a14, #12110e);
+      padding: 34px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .cta-box h3 {
+      font-family: var(--display);
+      font-size: 36px;
+      letter-spacing: 0.08em;
+      color: var(--gold-soft);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .cta-box p {
+      font-size: 22px;
+      color: #d6d6db;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .cta-pill {
+      flex-shrink: 0;
+      background: var(--gold);
+      color: var(--ink);
+      font-size: 18px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 22px 28px;
+    }
+  </style>
+</head>
+<body>
+  <!-- SLIDE 1 -->
+  <section class="slide" data-slide="1">
+    <div class="s1-bg"><img src="../images/gold-iphone.jpg" alt=""></div>
+    <div class="frame"></div>
+    <div class="rail-top"></div>
+    <div class="rail-bot"></div>
+    <div class="edge-join right"></div>
+    <header class="head">
+      <img src="../images/logo.png" alt="4EP Gold">
+      <span class="mark">Luxury Catalog</span>
+    </header>
+    <div class="s1-copy">
+      <img class="logo" src="../images/logo.png" alt="4EP Gold">
+      <p class="tag">Technology, Elevated.</p>
+      <p class="sub">24K Gold-Plated Collection</p>
+      <p>Discover a refined expression of technology, crafted for exclusivity, precision and distinction.</p>
+    </div>
+    <footer class="foot">
+      <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      <span class="swipe">Swipe →</span>
+      <span class="count">01 / 05</span>
+    </footer>
+  </section>
+
+  <!-- SLIDE 2 -->
+  <section class="slide" data-slide="2">
+    <div class="frame"></div>
+    <div class="rail-top"></div>
+    <div class="rail-bot"></div>
+    <div class="edge-join left"></div>
+    <div class="edge-join right"></div>
+    <header class="head">
+      <img src="../images/logo.png" alt="4EP Gold">
+      <span class="mark">Collection</span>
+    </header>
+    <div class="pad">
+      <p class="eyebrow">Collection</p>
+      <h2 class="title">4EP Gold<br>iPhone Collection</h2>
+      <div class="price-grid">
+        <article class="price-item">
+          <h3>iPhone 17 Pro</h3>
+          <div class="price-line"><span>512GB</span><strong>From $3,800</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $4,100</strong></div>
+        </article>
+        <article class="price-item">
+          <h3>iPhone 17 Pro Max</h3>
+          <div class="price-line"><span>512GB</span><strong>From $4,000</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $4,300</strong></div>
+        </article>
+        <article class="price-item">
+          <h3>iPhone 18 Pro</h3>
+          <div class="price-line"><span>512GB</span><strong>From $5,500</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $5,800</strong></div>
+        </article>
+        <article class="price-item">
+          <h3>iPhone 18 Pro Max</h3>
+          <div class="price-line"><span>512GB</span><strong>From $6,000</strong></div>
+          <div class="price-line"><span>1TB</span><strong>From $6,300</strong></div>
+        </article>
+      </div>
+      <div class="duo-thumbs">
+        <figure><img src="../images/cutouts/leather-duo-cutout.png" alt=""></figure>
+        <figure><img src="../images/cutouts/collection-fan-cutout.png" alt=""></figure>
+      </div>
+    </div>
+    <footer class="foot">
+      <div class="dots"><i></i><i class="on"></i><i></i><i></i><i></i></div>
+      <span class="swipe">Swipe →</span>
+      <span class="count">02 / 05</span>
+    </footer>
+  </section>
+
+  <!-- SLIDE 3 -->
+  <section class="slide" data-slide="3">
+    <div class="frame"></div>
+    <div class="rail-top"></div>
+    <div class="rail-bot"></div>
+    <div class="edge-join left"></div>
+    <div class="edge-join right"></div>
+    <header class="head">
+      <img src="../images/logo.png" alt="4EP Gold">
+      <span class="mark">Signature Models</span>
+    </header>
+    <div class="pad">
+      <p class="eyebrow">Featured</p>
+      <h2 class="title">iPhone 18 Pro<br>&amp; Pro Max</h2>
+      <p class="lede">24K gold limited editions — from $5,500.</p>
+      <div class="model-grid">
+        <figure><img src="../images/cutouts/iphone-18-pro-grid.jpg" alt=""></figure>
+        <figure><img src="../images/cutouts/iphone-18-pro-max-grid.jpg" alt=""></figure>
+      </div>
+      <div class="watch-bar">
+        <div>
+          <p class="label">Apple Watch Collection</p>
+          <p class="price">From $1,500</p>
+        </div>
+        <img src="../images/cutouts/gold-watch-cutout.png" alt="">
+      </div>
+    </div>
+    <footer class="foot">
+      <div class="dots"><i></i><i></i><i class="on"></i><i></i><i></i></div>
+      <span class="swipe">Swipe →</span>
+      <span class="count">03 / 05</span>
+    </footer>
+  </section>
+
+  <!-- SLIDE 4 -->
+  <section class="slide" data-slide="4">
+    <div class="frame"></div>
+    <div class="rail-top"></div>
+    <div class="rail-bot"></div>
+    <div class="edge-join left"></div>
+    <div class="edge-join right"></div>
+    <header class="head">
+      <img src="../images/logo.png" alt="4EP Gold">
+      <span class="mark">Atelier</span>
+    </header>
+    <div class="pad">
+      <p class="eyebrow">Atelier</p>
+      <h2 class="title">Bespoke<br>Customization</h2>
+      <div class="bespoke-row">
+        <div>
+          <p class="lede" style="font-size:22px;margin-bottom:8px;">Beyond the standard 24K gold-plated finish.</p>
+          <ul class="list">
+            <li>Pure Gold Engraving</li>
+            <li>Diamond Setting</li>
+            <li>Special Finishes</li>
+            <li>Bespoke Designs</li>
+          </ul>
+        </div>
+        <aside class="quote">
+          <h3>Custom Quotations</h3>
+          <p>Please contact <strong>4EP Gold</strong> for a personalized quotation.</p>
+        </aside>
+      </div>
+      <div class="finishes">
+        <figure>
+          <div class="shot"><img src="../images/rose-engraved.jpg" alt=""></div>
+          <figcaption>Rose</figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="../images/emerald-engraved.jpg" alt=""></div>
+          <figcaption>Emerald</figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="../images/crimson-engraved.jpg" alt=""></div>
+          <figcaption>Crimson</figcaption>
+        </figure>
+      </div>
+      <div class="color-note">
+        <span>Color finishes · Rose · Emerald · Crimson</span>
+        <strong>From $3,500</strong>
+      </div>
+    </div>
+    <footer class="foot">
+      <div class="dots"><i></i><i></i><i></i><i class="on"></i><i></i></div>
+      <span class="swipe">Swipe →</span>
+      <span class="count">04 / 05</span>
+    </footer>
+  </section>
+
+  <!-- SLIDE 5 -->
+  <section class="slide" data-slide="5">
+    <div class="frame"></div>
+    <div class="rail-top"></div>
+    <div class="rail-bot"></div>
+    <div class="edge-join left"></div>
+    <header class="head">
+      <img src="../images/logo.png" alt="4EP Gold">
+      <span class="mark">Signature Line</span>
+    </header>
+    <div class="pad">
+      <p class="eyebrow">Signature Line</p>
+      <h2 class="title">iPhone Duo</h2>
+      <p class="lede">Nobile Gold · Armor · Nobile Platinum · Helios · Aurelis — from $8,000.</p>
+      <div class="duo-grid">
+        <figure>
+          <div class="shot"><img src="../images/duo-nobile-gold.jpg" alt=""></div>
+          <figcaption>Nobile Gold</figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="../images/duo-armor.jpg" alt=""></div>
+          <figcaption>Armor</figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="../images/duo-nobile-platinum.jpg" alt=""></div>
+          <figcaption>Nobile Platinum</figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="../images/duo-helios.jpg" alt=""></div>
+          <figcaption>Helios</figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="../images/duo-aurelis.jpg" alt=""></div>
+          <figcaption>Aurelis</figcaption>
+        </figure>
+      </div>
+      <div class="cta-box">
+        <div>
+          <h3>Enquire with 4EP Gold</h3>
+          <p>512GB from $8,000 · 1TB $8,600 · 2TB $9,400</p>
+        </div>
+        <div class="cta-pill">Contact Us</div>
+      </div>
+    </div>
+    <footer class="foot">
+      <div class="dots"><i></i><i></i><i></i><i></i><i class="on"></i></div>
+      <span class="swipe">Save &amp; Share</span>
+      <span class="count">05 / 05</span>
+    </footer>
+  </section>
+</body>
+</html>
